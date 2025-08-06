@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weyer - Производство промышленных кабельных систем</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ---------- VARIABLES & RESET ---------- */
+        :root {
+            /* Цветовая схема */
+            --primary: #005BAA;
+            --primary-dark: #004a8c;
+            --secondary: #333333;
+            --accent: #FF6B00;
+            --light: #F5F7FA;
+            --white: #ffffff;
+            --gray: #0049ca;
+            --border: #E2E8F0;
+
+            /* Тени */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+
+            /* Радиусы */
+            --radius-sm: 4px;
+            --radius-md: 8px;
+            --radius-lg: 16px;
+
+            /* Отступы */
+            --space-xs: 4px;
+            --space-sm: 8px;
+            --space-md: 16px;
+            --space-lg: 24px;
+            --space-xl: 32px;
+            --space-xxl: 64px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--secondary);
+            line-height: 1.6;
+            background-color: var(--light);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            line-height: 1.2;
+            margin-bottom: var(--space-md);
+        }
+
+        p {
+            margin-bottom: var(--space-md);
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-lg);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: var(--radius-sm);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-accent {
+            background-color: var(--accent);
+            border-color: var(--accent);
+        }
+
+        .btn-accent:hover {
+            background-color: #e05e00;
+        }
+
+        .section {
+            padding: var(--space-xxl) 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: var(--space-xl);
+            position: relative;
+        }
+
+        .section-title:after {
+            content: "";
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            margin: var(--space-md) auto 0;
+            border-radius: 2px;
+        }
+
+        /* ---------- HEADER ---------- */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow-sm);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .logo span {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--primary);
+            margin-left: var(--space-sm);
+        }
+
+        .nav-main {
+            display: flex;
+        }
+
+        .nav-main a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 500;
+            font-size: 16px;
+            padding: var(--space-md) var(--space-lg);
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-main a:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-main a:hover,
+        .nav-main a.active {
+            color: var(--primary);
+        }
+
+        .nav-main a:hover:after,
+        .nav-main a.active:after {
+            width: 80%;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .header-phone {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* ---------- HERO SECTION ---------- */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1517048676732-d65bc937f952?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 700px;
+            color: var(--white);
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            margin-bottom: var(--space-lg);
+            line-height: 1.1;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            font-weight: 400;
+            margin-bottom: var(--space-xl);
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        .hero-stats {
+            display: flex;
+            margin-top: var(--space-xxl);
+            gap: var(--space-xl);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: var(--space-xs);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* ---------- FEATURES SECTION ---------- */
+        .features {
+            background-color: var(--white);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .feature-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: var(--space-xl);
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 91, 170, 0.1);
+            border-radius: 50%;
+            margin: 0 auto var(--space-lg);
+        }
+
+        .feature-icon i {
+            font-size: 28px;
+            color: var(--primary);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: var(--space-md);
+        }
+
+        /* ---------- CATEGORIES SECTION ---------- */
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .category-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            height: 280px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-image {
+            height: 180px;
+            overflow: hidden;
+        }
+
+        .category-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .category-card:hover .category-image img {
+            transform: scale(1.05);
+        }
+
+        .category-content {
+            padding: var(--space-lg);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .category-title {
+            font-size: 1.25rem;
+            margin-bottom: var(--space-sm);
+        }
+
+        .category-count {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: var(--space-md);
+        }
+
+        .category-link {
+            margin-top: auto;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            transition: color 0.3s ease;
+        }
+
+        .category-link:hover {
+            color: var(--accent);
+        }
+
+        /* ---------- PRODUCTS SECTION ---------- */
+        .products {
+            background-color: var(--light);
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .products-filter {
+            display: flex;
+            gap: var(--space-md);
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary);
+            color: var(--white);
+            border-color: var(--primary);
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: var(--space-lg);
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: var(--space-md);
+            left: var(--space-md);
+            background: var(--accent);
+            color: var(--white);
+            padding: 4px 12px;
+            border-radius: var(--radius-sm);
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .product-image {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-md);
+            background: var(--light);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            max-height: 160px;
+            transition: transform 0.5s ease;
+        }
+
+        .product-actions {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: var(--space-sm);
+            padding: var(--space-sm);
+            background: rgba(255, 255, 255, 0.9);
+            transition: bottom 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-card:hover .product-actions {
+            bottom: 0;
+        }
+
+        .product-content {
+            padding: var(--space-lg);
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: var(--space-sm);
+        }
+
+        .product-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--space-md);
+        }
+
+        .product-sku {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .product-cert {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .product-specs {
+            margin-bottom: var(--space-lg);
+        }
+
+        .spec-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 6px 0;
+            border-bottom: 1px dashed var(--border);
+            font-size: 0.9rem;
+        }
+
+        .spec-value {
+            font-weight: 600;
+        }
+
+        .product-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-price {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+
+        /* ---------- ABOUT SECTION ---------- */
+        .about {
+            background: linear-gradient(to right, var(--white) 50%, var(--light) 50%);
+        }
+
+        .about-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-xl);
+            align-items: center;
+        }
+
+        .about-image {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+        }
+
+        .about-content h2 {
+            text-align: left;
+        }
+
+        .about-content h2:after {
+            margin-left: 0;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+
+        .about-stat {
+            display: flex;
+            align-items: center;
+            gap: var(--space-md);
+        }
+
+        .stat-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: rgba(0, 91, 170, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .stat-circle i {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .stat-text h3 {
+            font-size: 1.5rem;
+            margin-bottom: 2px;
+        }
+
+        .stat-text p {
+            margin-bottom: 0;
+            font-size: 0.9rem;
+        }
+
+        /* ---------- CERTIFICATES SECTION ---------- */
+        .certificates {
+            background-color: var(--white);
+        }
+
+        .certificates-slider {
+            display: flex;
+            gap: var(--space-lg);
+            overflow-x: auto;
+            padding: var(--space-md) 0;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary) transparent;
+        }
+
+        .certificates-slider::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .certificates-slider::-webkit-scrollbar-thumb {
+            background-color: var(--primary);
+            border-radius: 3px;
+        }
+
+        .certificate-item {
+            flex: 0 0 280px;
+            background: var(--light);
+            border-radius: var(--radius-md);
+            padding: var(--space-lg);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .certificate-item:hover {
+            transform: translateY(-8px);
+        }
+
+        .certificate-icon {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: var(--space-lg);
+        }
+
+        .certificate-title {
+            font-size: 1.1rem;
+            margin-bottom: var(--space-sm);
+        }
+
+        .certificate-desc {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        /* ---------- CTA SECTION ---------- */
+        .cta {
+            background: linear-gradient(to right, var(--primary) 50%, var(--primary-dark) 50%);
+            color: var(--white);
+            text-align: center;
+            padding: var(--space-xxl) 0;
+        }
+
+        .cta-title {
+            font-size: 2.5rem;
+            margin-bottom: var(--space-lg);
+        }
+
+        .cta-text {
+            max-width: 700px;
+            margin: 0 auto var(--space-xl);
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            background: var(--accent);
+            border-color: var(--accent);
+            font-size: 1.1rem;
+            padding: 15px 40px;
+        }
+
+        .cta-button:hover {
+            background: #e05e00;
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            background: var(--secondary);
+            color: var(--white);
+            padding: var(--space-xxl) 0 var(--space-lg);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--space-xl);
+            margin-bottom: var(--space-xxl);
+        }
+
+        .footer-col h3 {
+            color: var(--white);
+            font-size: 1.25rem;
+            margin-bottom: var(--space-lg);
+            position: relative;
+            padding-bottom: var(--space-md);
+        }
+
+        .footer-col h3:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: var(--space-sm);
+        }
+
+        .footer-links a {
+            color: #c5c5c5;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-links a i {
+            color: var(--accent);
+            width: 20px;
+            text-align: center;
+        }
+
+        .footer-contact {
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: var(--space-sm);
+            margin-bottom: var(--space-md);
+        }
+
+        .contact-icon {
+            color: var(--accent);
+            font-size: 20px;
+            margin-top: 4px;
+        }
+
+        .contact-text {
+            color: #c5c5c5;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: var(--space-lg);
+            text-align: center;
+            color: #8d8d8d;
+            font-size: 0.9rem;
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 992px) {
+            .hero-title {
+                font-size: 2.8rem;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .about-image {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: var(--space-xl) 0;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-main {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--white);
+                flex-direction: column;
+                padding: var(--space-lg);
+                transition: left 0.3s ease;
+                z-index: 999;
+            }
+
+            .nav-main.active {
+                left: 0;
+            }
+
+            .hero-title {
+                font-size: 2.3rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-stats {
+                flex-wrap: wrap;
+                gap: var(--space-lg);
+            }
+
+            .products-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: var(--space-lg);
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- Header -->
+<header>
+    <div class="container header-container">
+        <div class="logo">
+            <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgNTAiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyNTAiIGhlaWdodD0iNTAiIGZpbGw9IiMwMDVCQUEiLz48dGV4dCB4PSIxMjUiIHk9IjM1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiNGRkZGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5XRVlFUjwvdGV4dD48L3N2Zz4=" alt="Weyer Logo">
+        </div>
+
+        <nav class="nav-main">
+            <a href="#" class="active">Главная</a>
+            <a href="#">Каталог</a>
+            <a href="#">Продукция</a>
+            <a href="#">Техподдержка</a>
+            <a href="#">О компании</a>
+            <a href="#">Контакты</a>
+        </nav>
+
+        <div class="header-actions">
+            <a href="tel:+74951234567" class="header-phone">
+                <i class="fas fa-phone-alt"></i>
+                +7 (495) 123-45-67
+            </a>
+            <button class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+</header>
+
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title">Профессиональные решения для промышленной кабельной защиты</h1>
+            <p class="hero-subtitle">Производим металлорукава и компоненты высочайшего качества для сложных промышленных условий с 2003 года</p>
+            <div class="hero-buttons">
+                <a href="#" class="btn btn-accent">Перейти в каталог</a>
+                <a href="#" class="btn btn-outline">Запросить КП</a>
+            </div>
+
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-label">лет на рынке</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">позиций в каталоге</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">крупных клиентов</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="section features">
+    <div class="container">
+        <h2 class="section-title">Наши преимущества</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-medal"></i>
+                </div>
+                <h3 class="feature-title">Качество ГОСТ</h3>
+                <p>Вся продукция соответствует международным стандартам качества и проходит строгий контроль</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-cogs"></i>
+                </div>
+                <h3 class="feature-title">Современное производство</h3>
+                <p>Используем передовое оборудование и технологии для изготовления продукции</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-file-certificate"></i>
+                </div>
+                <h3 class="feature-title">Сертификация</h3>
+                <p>Наша продукция имеет все необходимые сертификаты для применения в различных отраслях</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3 class="feature-title">Оперативная доставка</h3>
+                <p>Доставляем продукцию по всей России и СНГ в кратчайшие сроки</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Categories Section -->
+<section class="section">
+    <div class="container">
+        <h2 class="section-title">Категории продукции</h2>
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Металлорукава">
+                </div>
+                <div class="category-content">
+                    <h3 class="category-title">Металлорукава</h3>
+                    <div class="category-count">86 позиций</div>
+                    <a href="#" class="category-link">
+                        Смотреть все
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Кабельные вводы">
+                </div>
+                <div class="category-content">
+                    <h3 class="category-title">Кабельные вводы</h3>
+                    <div class="category-count">120 позиций</div>
+                    <a href="#" class="category-link">
+                        Смотреть все
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Соединители">
+                </div>
+                <div class="category-content">
+                    <h3 class="category-title">Соединители</h3>
+                    <div class="category-count">75 позиций</div>
+                    <a href="#" class="category-link">
+                        Смотреть все
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="category-card">
+                <div class="category-image">
+                    <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Защитные системы">
+                </div>
+                <div class="category-content">
+                    <h3 class="category-title">Защитные системы</h3>
+                    <div class="category-count">64 позиции</div>
+                    <a href="#" class="category-link">
+                        Смотреть все
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Products Section -->
+<section class="section products">
+    <div class="container">
+        <div class="products-header">
+            <h2 class="section-title" style="margin-bottom: 0;">Популярные товары</h2>
+            <div class="products-filter">
+                <button class="filter-btn active">Все</button>
+                <button class="filter-btn">Металлорукава</button>
+                <button class="filter-btn">Вводы</button>
+                <button class="filter-btn">Соединители</button>
+            </div>
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-badge">Хит продаж</div>
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Металлорукав РЗЦ-20">
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-outline" style="padding: 8px 12px;">
+                        <i class="fas fa-file-pdf"></i>
+                    </button>
+                    <button class="btn" style="padding: 8px 12px;">
+                        <i class="fas fa-shopping-cart"></i>
+                    </button>
+                    <button class="btn btn-accent" style="padding: 8px 12px;">
+                        <i class="fas fa-envelope"></i>
+                    </button>
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">Металлорукав РЗЦ-20</h3>
+                    <div class="product-meta">
+                        <div class="product-sku">Арт: WR-2020</div>
+                        <div class="product-cert">ATEX, ГОСТ</div>
+                    </div>
+                    <div class="product-specs">
+                        <div class="spec-item">
+                            <span>Диаметр:</span>
+                            <span class="spec-value">20 мм</span>
+                        </div>
+                        <div class="spec-item">
+                            <span>Длина:</span>
+                            <span class="spec-value">10 м</span>
+                        </div>
+                        <div class="spec-item">
+                            <span>Материал:</span>
+                            <span class="spec-value">Оцинк. сталь</span>
+                        </div>
+                    </div>
+                    <div class="product-footer">
+                        <div class="product-price">1 250 ₽</div>
+                        <a href="#" class="btn btn-outline" style="padding: 8px 16px;">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Кабельный ввод Ex-d">
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-outline" style="padding: 8px 12px;">
+                        <i class="fas fa-file-pdf"></i>
+                    </button>
+                    <button class="btn" style="padding: 8px 12px;">
+                        <i class="fas fa-shopping-cart"></i>
+                    </button>
+                    <button class="btn btn-accent" style="padding: 8px 12px;">
+                        <i class="fas fa-envelope"></i>
+                    </button>
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">Кабельный ввод Ex-d</h3>
+                    <div class="product-meta">
+                        <div class="product-sku">Арт: WR-3050</div>
+                        <div class="product-cert">ATEX, IECEx</div>
+                    </div>
+                    <div class="product-specs">
+                        <div class="spec-item">
+                            <span>Диаметр:</span>
+                            <span class="spec-value">50 мм</span>
+                        </div>
+                        <div class="spec-item">
+                            <span>Материал:</span>
+                            <span class="spec-value">Латунь</span>
+                        </div>
+                        <div class="spec-item">
+                            <span>Температура:</span>
+                            <span class="spec-value">-60°C +120°C</span>
+                        </div>
+                    </div>
+                    <div class="product-footer">
+                        <div class="product-price">3 450 ₽</div>
+                        <a href="#" class="btn btn-outline" style="padding: 8px 16px;">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-badge">Новинка</div>
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Соединитель M20">
+                </div>
+                <div class="product-actions">
+                    <button class="btn btn-outline" style="padding: 8px 12px;">
+                        <i class="fas fa-file-pdf"></i>
+                    </button>
+                    <button class="btn" style="padding: 8px 12px;">
+                        <i class="fas fa-shopping-cart"></i>
+                    </button>
+                    <button class="btn btn-accent" style="padding: 8px 12px;">
+                        <i class="fas fa-envelope"></i>
+                    </button>
+                </div>
+                <div class="product-content">
+                    <h3 class="product-title">Соединитель M20 IP68</h3>
+                    <div class="product-meta">
+                        <div class="product-sku">Арт: WR-4060</div>
+                        <div class="product-cert">IP68, ГОСТ</div>
+                    </div>
+                    <div class="product-specs">
+                        <div class="spec-item">
+                            <span>Тип:</span>
+                            <span class="spec-value">M20x1.5</span>
+                        </div>
+                        <div class="spec-item">
+                            <span>Материал:</span>
+                            <span class="spec-value">Пластик</span>
+                        </div>
+                        <div class="spec-item">
+                            <span>Защита:</span>
+                            <span class="spec-value">IP68</span>
+                        </div>
+                    </div>
+                    <div class="product-footer">
+                        <div class="product-price">850 ₽</div>
+                        <a href="#" class="btn btn-outline" style="padding: 8px 16px;">Подробнее</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="section about">
+    <div class="container about-container">
+        <div class="about-image">
+            <img src="https://images.unsplash.com/photo-1516937941344-00b4e0337589?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Производство Weyer">
+        </div>
+        <div class="about-content">
+            <h2 class="section-title">О компании Weyer</h2>
+            <p>Weyer - ведущий производитель промышленных кабельных систем и защитных решений с 1992 года. Наша миссия - обеспечить максимальную защиту и надежность электротехнических соединений в самых сложных условиях эксплуатации.</p>
+            <p>Благодаря современному оборудованию и строгому контролю качества, мы производим продукцию, соответствующую международным стандартам ATEX, IECEx, ГОСТ и другим отраслевым требованиям.</p>
+
+            <div class="about-stats">
+                <div class="about-stat">
+                    <div class="stat-circle">
+                        <i class="fas fa-industry"></i>
+                    </div>
+                    <div class="stat-text">
+                        <h3>15 000 м²</h3>
+                        <p>Площадь производства</p>
+                    </div>
+                </div>
+
+                <div class="about-stat">
+                    <div class="stat-circle">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-text">
+                        <h3>250+</h3>
+                        <p>Сотрудников</p>
+                    </div>
+                </div>
+
+                <div class="about-stat">
+                    <div class="stat-circle">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <div class="stat-text">
+                        <h3>20+</h3>
+                        <p>Стран поставок</p>
+                    </div>
+                </div>
+
+                <div class="about-stat">
+                    <div class="stat-circle">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <div class="stat-text">
+                        <h3>50+</h3>
+                        <p>Сертификатов</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="#" class="btn" style="margin-top: var(--space-lg);">
+                Подробнее о компании
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Certificates Section -->
+<section class="section certificates">
+    <div class="container">
+        <h2 class="section-title">Наши сертификаты</h2>
+        <div class="certificates-slider">
+            <div class="certificate-item">
+                <div class="certificate-icon">
+                    <i class="fas fa-certificate"></i>
+                </div>
+                <h3 class="certificate-title">Сертификат ATEX</h3>
+                <p class="certificate-desc">Соответствие требованиям взрывозащиты для зон 1 и 2</p>
+            </div>
+
+            <div class="certificate-item">
+                <div class="certificate-icon">
+                    <i class="fas fa-file-contract"></i>
+                </div>
+                <h3 class="certificate-title">ISO 9001:2015</h3>
+                <p class="certificate-desc">Международный стандарт системы менеджмента качества</p>
+            </div>
+
+            <div class="certificate-item">
+                <div class="certificate-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="certificate-title">ГОСТ Р</h3>
+                <p class="certificate-desc">Соответствие российским стандартам качества</p>
+            </div>
+
+            <div class="certificate-item">
+                <div class="certificate-icon">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <h3 class="certificate-title">IECEx</h3>
+                <p class="certificate-desc">Международная система сертификации электрооборудования</p>
+            </div>
+
+            <div class="certificate-item">
+                <div class="certificate-icon">
+                    <i class="fas fa-water"></i>
+                </div>
+                <h3 class="certificate-title">IP68</h3>
+                <p class="certificate-desc">Сертификат пылевлагозащиты для продукции</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta">
+    <div class="container">
+        <h2 class="cta-title">Нужна консультация по продукции?</h2>
+        <p class="cta-text">Наши технические специалисты помогут подобрать оптимальное решение для ваших задач и подготовят индивидуальное коммерческое предложение</p>
+        <a href="#" class="btn cta-button">Запросить консультацию</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Продукция</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Металлорукава</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Кабельные вводы</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Соединители</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Защитные системы</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Комплектующие</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Компания</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> О нас</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Производство</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Сертификаты</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Новости</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Вакансии</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Поддержка</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Техническая документация</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Статьи</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Видеоинструкции</a></li>
+                    <li><a href="#"><i class="fas fa-chevron-right"></i> Контакты техподдержки</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h3>Контакты</h3>
+                <div class="footer-contact">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        <div class="contact-text">
+                            115280, Москва, ул. Ленинская Слобода, 26
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt contact-icon"></i>
+                        <div class="contact-text">
+                            +7 (495) 123-45-67
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <div class="contact-text">
+                            info@weyer.ru
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <i class="fas fa-clock contact-icon"></i>
+                        <div class="contact-text">
+                            Пн-Пт: 9:00 - 18:00
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-social">
+                    <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2023 Weyer. Все права защищены. Производство промышленных кабельных систем</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Mobile Menu Toggle
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMain = document.querySelector('.nav-main');
+
+    menuToggle.addEventListener('click', () => {
+        navMain.classList.toggle('active');
+        menuToggle.querySelector('i').classList.toggle('fa-bars');
+        menuToggle.querySelector('i').classList.toggle('fa-times');
+    });
+
+    // Filter buttons
+    const filterBtns = document.querySelectorAll('.filter-btn');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+        });
+    });
+</script>
+</body>
+</html>

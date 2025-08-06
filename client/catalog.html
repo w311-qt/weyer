@@ -1,0 +1,1421 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Каталог продукции | Weyer - Производитель промышленных кабельных систем</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Общие стили из предыдущего дизайна */
+    :root {
+      --primary: #005BAA;
+      --primary-dark: #004a8c;
+      --secondary: #333333;
+      --accent: #FF6B00;
+      --light: #F5F7FA;
+      --white: #ffffff;
+      --gray: #8D99AE;
+      --border: #E2E8F0;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+      --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+      --space-xs: 4px;
+      --space-sm: 8px;
+      --space-md: 16px;
+      --space-lg: 24px;
+      --space-xl: 32px;
+      --space-xxl: 64px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--secondary);
+      line-height: 1.6;
+      background-color: var(--light);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      line-height: 1.2;
+      margin-bottom: var(--space-md);
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 var(--space-lg);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 28px;
+      background-color: var(--primary);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: var(--radius-sm);
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      border: 2px solid var(--primary);
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: var(--primary-dark);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--primary);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .btn-accent {
+      background-color: var(--accent);
+      border-color: var(--accent);
+    }
+
+    .btn-accent:hover {
+      background: #e05e00;
+    }
+
+    .section {
+      padding: var(--space-xl) 0;
+    }
+
+    /* Шапка (из предыдущего дизайна) */
+    header {
+      background-color: var(--white);
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+    }
+
+    .nav-main {
+      display: flex;
+    }
+
+    .nav-main a {
+      color: var(--secondary);
+      text-decoration: none;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 500;
+      font-size: 16px;
+      padding: var(--space-md) var(--space-lg);
+      transition: color 0.3s ease;
+      position: relative;
+    }
+
+    .nav-main a:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 3px;
+      background: var(--primary);
+      transition: width 0.3s ease;
+    }
+
+    .nav-main a:hover,
+    .nav-main a.active {
+      color: var(--primary);
+    }
+
+    .nav-main a:hover:after,
+    .nav-main a.active:after {
+      width: 80%;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .header-phone {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: var(--primary);
+      cursor: pointer;
+    }
+
+    /* Хлебные крошки */
+    .breadcrumbs {
+      padding: var(--space-md) 0;
+      background-color: var(--light);
+      font-size: 0.9rem;
+    }
+
+    .breadcrumbs a {
+      color: var(--primary);
+      text-decoration: none;
+    }
+
+    .breadcrumbs span {
+      color: var(--gray);
+    }
+
+    /* Основная структура каталога */
+    .catalog-container {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: var(--space-lg);
+      padding: var(--space-lg) 0;
+    }
+
+    /* Сайдбар с фильтрами */
+    .catalog-sidebar {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: var(--space-lg);
+      box-shadow: var(--shadow-sm);
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+    }
+
+    .filter-section {
+      margin-bottom: var(--space-lg);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: var(--space-lg);
+    }
+
+    .filter-section:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .filter-title {
+      font-size: 1.1rem;
+      margin-bottom: var(--space-md);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .filter-title i {
+      transition: transform 0.3s ease;
+    }
+
+    .filter-content {
+      max-height: 1000px;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+    }
+
+    .filter-content.collapsed {
+      max-height: 0;
+    }
+
+    .filter-group {
+      margin-bottom: var(--space-md);
+    }
+
+    .filter-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .filter-group-title {
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+      font-size: 0.95rem;
+    }
+
+    .filter-options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .filter-option {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .filter-option input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      accent-color: var(--primary);
+    }
+
+    .filter-option label {
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .range-slider {
+      padding: var(--space-md) 0;
+    }
+
+    .range-values {
+      display: flex;
+      justify-content: space-between;
+      margin-top: var(--space-sm);
+      font-size: 0.9rem;
+    }
+
+    .price-range {
+      width: 100%;
+      height: 5px;
+      background: var(--border);
+      border-radius: 10px;
+      margin-top: var(--space-md);
+      position: relative;
+    }
+
+    .price-range .progress {
+      height: 100%;
+      left: 0%;
+      right: 0%;
+      position: absolute;
+      background: var(--primary);
+      border-radius: 10px;
+    }
+
+    .range-input {
+      position: relative;
+    }
+
+    .range-input input {
+      position: absolute;
+      top: -5px;
+      height: 5px;
+      width: 100%;
+      background: none;
+      pointer-events: none;
+      -webkit-appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      height: 18px;
+      width: 18px;
+      border-radius: 50%;
+      background: var(--primary);
+      pointer-events: auto;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+
+    .filter-reset {
+      display: block;
+      width: 100%;
+      background: none;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+      padding: 10px;
+      border-radius: var(--radius-sm);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      margin-top: var(--space-md);
+    }
+
+    .filter-reset:hover {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    /* Основная область каталога */
+    .catalog-main {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .catalog-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--shadow-sm);
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+
+    .catalog-title {
+      font-size: 1.8rem;
+      margin: 0;
+    }
+
+    .catalog-controls {
+      display: flex;
+      gap: var(--space-md);
+      align-items: center;
+    }
+
+    .view-toggle {
+      display: flex;
+      gap: var(--space-xs);
+    }
+
+    .view-btn {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--light);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .view-btn.active, .view-btn:hover {
+      background: var(--primary);
+      color: var(--white);
+      border-color: var(--primary);
+    }
+
+    .sort-select {
+      padding: 8px 12px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--white);
+      font-family: 'Open Sans', sans-serif;
+      cursor: pointer;
+    }
+
+    .compare-bar {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: var(--space-md) var(--space-lg);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .compare-info {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+
+    .compare-count {
+      background: var(--accent);
+      color: var(--white);
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .compare-actions {
+      display: flex;
+      gap: var(--space-sm);
+    }
+
+    .compare-btn {
+      padding: 8px 16px;
+      font-size: 0.9rem;
+    }
+
+    .catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-lg);
+    }
+
+    .catalog-grid.list-view {
+      grid-template-columns: 1fr;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-card.list-view {
+      flex-direction: row;
+    }
+
+    .product-card.list-view .product-image {
+      width: 250px;
+      height: auto;
+      border-radius: var(--radius-md) 0 0 var(--radius-md);
+    }
+
+    .product-card.list-view .product-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .product-card.list-view .product-footer {
+      margin-top: auto;
+    }
+
+    .product-badge {
+      position: absolute;
+      top: var(--space-md);
+      left: var(--space-md);
+      background: var(--accent);
+      color: var(--white);
+      padding: 4px 12px;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      font-weight: 600;
+      z-index: 2;
+    }
+
+    .product-image {
+      height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: var(--space-md);
+      background: var(--light);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      max-height: 160px;
+      transition: transform 0.5s ease;
+    }
+
+    .product-compare {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      z-index: 2;
+    }
+
+    .compare-check {
+      display: none;
+    }
+
+    .compare-label {
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--primary);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: var(--white);
+      transition: all 0.3s ease;
+    }
+
+    .compare-label i {
+      color: var(--primary);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      font-size: 14px;
+    }
+
+    .compare-check:checked + .compare-label {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+
+    .compare-check:checked + .compare-label i {
+      opacity: 1;
+      color: var(--white);
+    }
+
+    .product-content {
+      padding: var(--space-lg);
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .product-title {
+      font-size: 1.1rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .product-sku {
+      color: var(--gray);
+      font-size: 0.9rem;
+      margin-bottom: var(--space-md);
+    }
+
+    .product-specs {
+      margin-bottom: var(--space-lg);
+    }
+
+    .spec-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px dashed var(--border);
+      font-size: 0.9rem;
+    }
+
+    .spec-value {
+      font-weight: 600;
+    }
+
+    .product-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+    }
+
+    .product-price {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--primary);
+    }
+
+    .product-actions {
+      display: flex;
+      gap: var(--space-sm);
+    }
+
+    .action-btn {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      background: var(--light);
+      color: var(--primary);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .action-btn:hover {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    /* Пагинация */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      margin-top: var(--space-xl);
+    }
+
+    .pagination-inner {
+      display: flex;
+      gap: var(--space-xs);
+      background: var(--white);
+      border-radius: var(--radius-md);
+      padding: var(--space-sm);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .page-link {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-sm);
+      background: var(--light);
+      color: var(--secondary);
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .page-link:hover, .page-link.active {
+      background: var(--primary);
+      color: var(--white);
+    }
+
+    /* Футер (из предыдущего дизайна) */
+    footer {
+      background: var(--secondary);
+      color: var(--white);
+      padding: var(--space-xxl) 0 var(--space-lg);
+    }
+
+    /* Адаптивность */
+    @media (max-width: 992px) {
+      .catalog-container {
+        grid-template-columns: 1fr;
+      }
+
+      .catalog-sidebar {
+        position: static;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .catalog-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .catalog-controls {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .product-card.list-view {
+        flex-direction: column;
+      }
+
+      .product-card.list-view .product-image {
+        width: 100%;
+        height: 200px;
+        border-radius: var(--radius-md) var(--radius-md) 0 0;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .pagination-inner {
+        flex-wrap: wrap;
+      }
+
+      .compare-bar {
+        flex-direction: column;
+        gap: var(--space-md);
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+<!-- Шапка -->
+<header>
+  <div class="container header-container">
+    <div class="logo">
+      <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgNTAiPjxyZWN0IHg9IjAiIHk9IjAiIHdpZHRoPSIyNTAiIGhlaWdodD5NTwvcmVjdD48dGV4dCB4PSIxMjUiIHk9IjM1IiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMjQiIGZpbGw9IiNGRkZGRkYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5XRVlFUjwvdGV4dD48L3N2Zz4=" alt="Weyer Logo">
+    </div>
+
+    <nav class="nav-main">
+      <a href="#">Главная</a>
+      <a href="#" class="active">Каталог</a>
+      <a href="#">Продукция</a>
+      <a href="#">Техподдержка</a>
+      <a href="#">О компании</a>
+      <a href="#">Контакты</a>
+    </nav>
+
+    <div class="header-actions">
+      <a href="tel:+74951234567" class="header-phone">
+        <i class="fas fa-phone-alt"></i>
+        +7 (495) 123-45-67
+      </a>
+      <button class="menu-toggle">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Хлебные крошки -->
+<div class="breadcrumbs">
+  <div class="container">
+    <a href="#">Главная</a> > <a href="#">Каталог</a> > <span>Металлорукава</span>
+  </div>
+</div>
+
+<!-- Основной контент каталога -->
+<div class="container">
+  <div class="catalog-container">
+    <!-- Сайдбар с фильтрами -->
+    <aside class="catalog-sidebar">
+      <div class="filter-section">
+        <div class="filter-title">
+          <h3>Категории</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="filter-content">
+          <div class="filter-group">
+            <div class="filter-options">
+              <div class="filter-option">
+                <input type="checkbox" id="cat1" checked>
+                <label for="cat1">Металлорукава (86)</label>
+              </div>
+              <div class="filter-option">
+                <input type="checkbox" id="cat2">
+                <label for="cat2">Кабельные вводы (120)</label>
+              </div>
+              <div class="filter-option">
+                <input type="checkbox" id="cat3">
+                <label for="cat3">Соединители (75)</label>
+              </div>
+              <div class="filter-option">
+                <input type="checkbox" id="cat4">
+                <label for="cat4">Защитные системы (64)</label>
+              </div>
+              <div class="filter-option">
+                <input type="checkbox" id="cat5">
+                <label for="cat5">Комплектующие (42)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-title">
+          <h3>Цена</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="filter-content">
+          <div class="range-slider">
+            <div class="price-range">
+              <div class="progress"></div>
+            </div>
+            <div class="range-input">
+              <input type="range" min="0" max="10000" value="1000" step="100">
+              <input type="range" min="0" max="10000" value="5000" step="100">
+            </div>
+            <div class="range-values">
+              <span>1 000 ₽</span>
+              <span>5 000 ₽</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-title">
+          <h3>Характеристики</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="filter-content">
+          <div class="filter-group">
+            <div class="filter-group-title">Диаметр</div>
+            <div class="filter-options">
+              <div class="filter-option">
+                <input type="checkbox" id="diam1">
+                <label for="diam1">до 10 мм (24)</label>
+              </div>
+              <div class="filter-option">
+                <input type="checkbox" id="diam2" checked>
+                <label for="diam2">10-20 мм (42)</label>
+              </div>
+              <div class="filter-option">
+                <input type="checkbox" id="diam3">
+                <label for="diam3">20-40 мм (18)</label>
+              </div>
+              <div class="filter-option">
+                <input type="checkbox" id="diam4">
+                <label for="diam4">от 40 мм (12)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <div class="filter-group-title">Материал</div>
+            <div class="filter-options">
+              <div class="filter-option">
+                <input type="checkbox" id="mat1" checked>
+                <label for="mat1">Оцинкованная сталь (48)</label>
+              </div>
+              <div class="filter-option">
+                <input type="checkbox" id="mat2">
+                <label for="mat2">Нержавеющая сталь (22)</label>
+              </div>
+              <div class="filter-option">
+                <input type="checkbox" id="mat3">
+                <label for="mat3">Пластик (16)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-group">
+            <div class="filter-group-title">Температурный режим</div>
+            <div class="filter-options">
+              <div class="filter-option">
+                <input type="checkbox" id="temp1">
+                <label for="temp1">Стандартный (0°C +60°C)</label>
+              </div>
+              <div class="filter-option">
+                <input type="checkbox" id="temp2" checked>
+                <label for="temp2">Расширенный (-30°C +100°C)</label>
+              </div>
+              <div class="filter-option">
+                <input type="checkbox" id="temp3">
+                <label for="temp3">Экстремальный (-60°C +150°C)</label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="filter-section">
+        <div class="filter-title">
+          <h3>Сертификаты</h3>
+          <i class="fas fa-chevron-down"></i>
+        </div>
+        <div class="filter-content">
+          <div class="filter-options">
+            <div class="filter-option">
+              <input type="checkbox" id="cert1">
+              <label for="cert1">ATEX</label>
+            </div>
+            <div class="filter-option">
+              <input type="checkbox" id="cert2" checked>
+              <label for="cert2">ГОСТ</label>
+            </div>
+            <div class="filter-option">
+              <input type="checkbox" id="cert3">
+              <label for="cert3">IECEx</label>
+            </div>
+            <div class="filter-option">
+              <input type="checkbox" id="cert4">
+              <label for="cert4">IP68</label>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <button class="filter-reset">Сбросить все фильтры</button>
+    </aside>
+
+    <!-- Основная область каталога -->
+    <main class="catalog-main">
+      <div class="catalog-header">
+        <h1 class="catalog-title">Металлорукава</h1>
+        <div class="catalog-controls">
+          <div class="view-toggle">
+            <button class="view-btn grid-view active" title="Плитка">
+              <i class="fas fa-th"></i>
+            </button>
+            <button class="view-btn list-view" title="Список">
+              <i class="fas fa-list"></i>
+            </button>
+          </div>
+          <div class="sort">
+            <select class="sort-select">
+              <option>По умолчанию</option>
+              <option>По цене (возрастание)</option>
+              <option>По цене (убывание)</option>
+              <option>По популярности</option>
+              <option>По новизне</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="compare-bar">
+        <div class="compare-info">
+          <div class="compare-count">2</div>
+          <div>Товара добавлено к сравнению</div>
+        </div>
+        <div class="compare-actions">
+          <button class="btn btn-outline compare-btn">Очистить</button>
+          <button class="btn btn-accent compare-btn">Сравнить</button>
+        </div>
+      </div>
+
+      <div class="catalog-grid">
+        <!-- Товар 1 -->
+        <div class="product-card">
+          <div class="product-badge">Хит продаж</div>
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Металлорукав РЗЦ-20">
+            <div class="product-compare">
+              <input type="checkbox" id="compare1" class="compare-check">
+              <label for="compare1" class="compare-label">
+                <i class="fas fa-check"></i>
+              </label>
+            </div>
+          </div>
+          <div class="product-content">
+            <h3 class="product-title">Металлорукав РЗЦ-20</h3>
+            <div class="product-sku">Арт: WR-2020</div>
+            <div class="product-specs">
+              <div class="spec-item">
+                <span>Диаметр:</span>
+                <span class="spec-value">20 мм</span>
+              </div>
+              <div class="spec-item">
+                <span>Длина:</span>
+                <span class="spec-value">10 м</span>
+              </div>
+              <div class="spec-item">
+                <span>Материал:</span>
+                <span class="spec-value">Оцинк. сталь</span>
+              </div>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">1 250 ₽</div>
+              <div class="product-actions">
+                <button class="action-btn" title="Подробнее">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="action-btn" title="Запрос КП">
+                  <i class="fas fa-file-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Товар 2 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Металлорукав РЗЦ-25">
+            <div class="product-compare">
+              <input type="checkbox" id="compare2" class="compare-check" checked>
+              <label for="compare2" class="compare-label">
+                <i class="fas fa-check"></i>
+              </label>
+            </div>
+          </div>
+          <div class="product-content">
+            <h3 class="product-title">Металлорукав РЗЦ-25</h3>
+            <div class="product-sku">Арт: WR-2025</div>
+            <div class="product-specs">
+              <div class="spec-item">
+                <span>Диаметр:</span>
+                <span class="spec-value">25 мм</span>
+              </div>
+              <div class="spec-item">
+                <span>Длина:</span>
+                <span class="spec-value">10 м</span>
+              </div>
+              <div class="spec-item">
+                <span>Материал:</span>
+                <span class="spec-value">Оцинк. сталь</span>
+              </div>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">1 450 ₽</div>
+              <div class="product-actions">
+                <button class="action-btn" title="Подробнее">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="action-btn" title="Запрос КП">
+                  <i class="fas fa-file-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Товар 3 -->
+        <div class="product-card">
+          <div class="product-badge">Новинка</div>
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Металлорукав РЗЦ-15">
+            <div class="product-compare">
+              <input type="checkbox" id="compare3" class="compare-check" checked>
+              <label for="compare3" class="compare-label">
+                <i class="fas fa-check"></i>
+              </label>
+            </div>
+          </div>
+          <div class="product-content">
+            <h3 class="product-title">Металлорукав РЗЦ-15</h3>
+            <div class="product-sku">Арт: WR-2015</div>
+            <div class="product-specs">
+              <div class="spec-item">
+                <span>Диаметр:</span>
+                <span class="spec-value">15 мм</span>
+              </div>
+              <div class="spec-item">
+                <span>Длина:</span>
+                <span class="spec-value">10 м</span>
+              </div>
+              <div class="spec-item">
+                <span>Материал:</span>
+                <span class="spec-value">Нерж. сталь</span>
+              </div>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">1 850 ₽</div>
+              <div class="product-actions">
+                <button class="action-btn" title="Подробнее">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="action-btn" title="Запрос КП">
+                  <i class="fas fa-file-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Товар 4 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Металлорукав РЗЦ-30">
+            <div class="product-compare">
+              <input type="checkbox" id="compare4" class="compare-check">
+              <label for="compare4" class="compare-label">
+                <i class="fas fa-check"></i>
+              </label>
+            </div>
+          </div>
+          <div class="product-content">
+            <h3 class="product-title">Металлорукав РЗЦ-30</h3>
+            <div class="product-sku">Арт: WR-2030</div>
+            <div class="product-specs">
+              <div class="spec-item">
+                <span>Диаметр:</span>
+                <span class="spec-value">30 мм</span>
+              </div>
+              <div class="spec-item">
+                <span>Длина:</span>
+                <span class="spec-value">10 м</span>
+              </div>
+              <div class="spec-item">
+                <span>Материал:</span>
+                <span class="spec-value">Оцинк. сталь</span>
+              </div>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">1 650 ₽</div>
+              <div class="product-actions">
+                <button class="action-btn" title="Подробнее">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="action-btn" title="Запрос КП">
+                  <i class="fas fa-file-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Товар 5 -->
+        <div class="product-card">
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Металлорукав РЗЦ-40">
+            <div class="product-compare">
+              <input type="checkbox" id="compare5" class="compare-check">
+              <label for="compare5" class="compare-label">
+                <i class="fas fa-check"></i>
+              </label>
+            </div>
+          </div>
+          <div class="product-content">
+            <h3 class="product-title">Металлорукав РЗЦ-40</h3>
+            <div class="product-sku">Арт: WR-2040</div>
+            <div class="product-specs">
+              <div class="spec-item">
+                <span>Диаметр:</span>
+                <span class="spec-value">40 мм</span>
+              </div>
+              <div class="spec-item">
+                <span>Длина:</span>
+                <span class="spec-value">10 м</span>
+              </div>
+              <div class="spec-item">
+                <span>Материал:</span>
+                <span class="spec-value">Оцинк. сталь</span>
+              </div>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">2 250 ₽</div>
+              <div class="product-actions">
+                <button class="action-btn" title="Подробнее">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="action-btn" title="Запрос КП">
+                  <i class="fas fa-file-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Товар 6 -->
+        <div class="product-card">
+          <div class="product-badge">Скидка 15%</div>
+          <div class="product-image">
+            <img src="https://images.unsplash.com/photo-1610945264803-c22b62d2a7b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Металлорукав РЗЦ-50">
+            <div class="product-compare">
+              <input type="checkbox" id="compare6" class="compare-check">
+              <label for="compare6" class="compare-label">
+                <i class="fas fa-check"></i>
+              </label>
+            </div>
+          </div>
+          <div class="product-content">
+            <h3 class="product-title">Металлорукав РЗЦ-50</h3>
+            <div class="product-sku">Арт: WR-2050</div>
+            <div class="product-specs">
+              <div class="spec-item">
+                <span>Диаметр:</span>
+                <span class="spec-value">50 мм</span>
+              </div>
+              <div class="spec-item">
+                <span>Длина:</span>
+                <span class="spec-value">10 м</span>
+              </div>
+              <div class="spec-item">
+                <span>Материал:</span>
+                <span class="spec-value">Нерж. сталь</span>
+              </div>
+            </div>
+            <div class="product-footer">
+              <div class="product-price">
+                <span style="text-decoration: line-through; color: var(--gray); margin-right: 8px;">3 200 ₽</span>
+                <span>2 720 ₽</span>
+              </div>
+              <div class="product-actions">
+                <button class="action-btn" title="Подробнее">
+                  <i class="fas fa-eye"></i>
+                </button>
+                <button class="action-btn" title="Запрос КП">
+                  <i class="fas fa-file-alt"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Пагинация -->
+      <div class="pagination">
+        <div class="pagination-inner">
+          <a href="#" class="page-link">
+            <i class="fas fa-chevron-left"></i>
+          </a>
+          <a href="#" class="page-link">1</a>
+          <a href="#" class="page-link active">2</a>
+          <a href="#" class="page-link">3</a>
+          <a href="#" class="page-link">4</a>
+          <a href="#" class="page-link">5</a>
+          <a href="#" class="page-link">
+            <i class="fas fa-chevron-right"></i>
+          </a>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h3>Продукция</h3>
+        <ul class="footer-links">
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Металлорукава</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Кабельные вводы</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Соединители</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Защитные системы</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Комплектующие</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Компания</h3>
+        <ul class="footer-links">
+          <li><a href="#"><i class="fas fa-chevron-right"></i> О нас</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Производство</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Сертификаты</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Новости</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Вакансии</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Поддержка</h3>
+        <ul class="footer-links">
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Техническая документация</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Статьи</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Видеоинструкции</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Контакты техподдержки</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h3>Контакты</h3>
+        <div class="footer-contact">
+          <div class="contact-item">
+            <i class="fas fa-map-marker-alt contact-icon"></i>
+            <div class="contact-text">
+              115280, Москва, ул. Ленинская Слобода, 26
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <i class="fas fa-phone-alt contact-icon"></i>
+            <div class="contact-text">
+              +7 (495) 123-45-67
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <i class="fas fa-envelope contact-icon"></i>
+            <div class="contact-text">
+              info@weyer.ru
+            </div>
+          </div>
+
+          <div class="contact-item">
+            <i class="fas fa-clock contact-icon"></i>
+            <div class="contact-text">
+              Пн-Пт: 9:00 - 18:00
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-social">
+          <a href="#" class="social-link"><i class="fab fa-vk"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-telegram"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="social-link"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2023 Weyer. Все права защищены. Производство промышленных кабельных систем</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Переключение вида каталога
+  const gridViewBtn = document.querySelector('.grid-view');
+  const listViewBtn = document.querySelector('.list-view');
+  const catalogGrid = document.querySelector('.catalog-grid');
+  const productCards = document.querySelectorAll('.product-card');
+
+  gridViewBtn.addEventListener('click', () => {
+    gridViewBtn.classList.add('active');
+    listViewBtn.classList.remove('active');
+    catalogGrid.classList.remove('list-view');
+    productCards.forEach(card => card.classList.remove('list-view'));
+  });
+
+  listViewBtn.addEventListener('click', () => {
+    listViewBtn.classList.add('active');
+    gridViewBtn.classList.remove('active');
+    catalogGrid.classList.add('list-view');
+    productCards.forEach(card => card.classList.add('list-view'));
+  });
+
+  // Сворачивание/разворачивание фильтров
+  const filterTitles = document.querySelectorAll('.filter-title');
+
+  filterTitles.forEach(title => {
+    title.addEventListener('click', () => {
+      const content = title.nextElementSibling;
+      const icon = title.querySelector('i');
+
+      content.classList.toggle('collapsed');
+      icon.classList.toggle('fa-chevron-down');
+      icon.classList.toggle('fa-chevron-up');
+    });
+  });
+
+  // Слайдер диапазона цен
+  const rangeInput = document.querySelectorAll('.range-input input');
+  const progress = document.querySelector('.progress');
+  const priceRange = document.querySelector('.price-range');
+
+  let priceGap = 1000;
+
+  rangeInput.forEach(input => {
+    input.addEventListener('input', () => {
+      let minVal = parseInt(rangeInput[0].value);
+      let maxVal = parseInt(rangeInput[1].value);
+
+      if (maxVal - minVal < priceGap) {
+        if (input === rangeInput[0]) {
+          rangeInput[0].value = maxVal - priceGap;
+        } else {
+          rangeInput[1].value = minVal + priceGap;
+        }
+      } else {
+        progress.style.left = (minVal / rangeInput[0].max) * 100 + "%";
+        progress.style.right = 100 - (maxVal / rangeInput[1].max) * 100 + "%";
+
+        // Обновление отображаемых значений
+        document.querySelector('.range-values span:first-child').textContent = minVal.toLocaleString() + ' ₽';
+        document.querySelector('.range-values span:last-child').textContent = maxVal.toLocaleString() + ' ₽';
+      }
+    });
+  });
+
+  // Кнопка сброса фильтров
+  const filterReset = document.querySelector('.filter-reset');
+
+  filterReset.addEventListener('click', () => {
+    // Сброс чекбоксов
+    document.querySelectorAll('.filter-option input[type="checkbox"]').forEach(checkbox => {
+      checkbox.checked = false;
+    });
+
+    // Сброс диапазона цен
+    rangeInput[0].value = 0;
+    rangeInput[1].value = 10000;
+    progress.style.left = "0%";
+    progress.style.right = "0%";
+    document.querySelector('.range-values span:first-child').textContent = '0 ₽';
+    document.querySelector('.range-values span:last-child').textContent = '10 000 ₽';
+  });
+</script>
+</body>
+</html>
