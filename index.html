@@ -1,1825 +1,626 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weyer - Маркетплейс промышленных кабельных систем</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WEYER — Маркетплейс промышленных кабельных систем</title>
+    <meta name="theme-color" content="#0052FF" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
     <style>
         /* ---------- MODERN VARIABLES & RESET ---------- */
         :root {
-            /* Colors */
+            /* Brand */
             --primary: #0052FF;
             --primary-dark: #0041CC;
-            --primary-light: #E6F1FF;
+            --primary-25: rgba(0, 82, 255, .25);
             --secondary: #1A1D29;
             --accent: #FF4B00;
-            --accent-light: #FFE6DB;
             --success: #00D084;
             --warning: #FFB800;
             --error: #FF3B30;
 
             /* Neutrals */
-            --white: #FFFFFF;
-            --gray-50: #F8FAFC;
-            --gray-100: #F1F5F9;
-            --gray-200: #E2E8F0;
-            --gray-300: #CBD5E1;
-            --gray-400: #94A3B8;
-            --gray-500: #64748B;
-            --gray-600: #475569;
-            --gray-700: #334155;
-            --gray-800: #1E293B;
-            --gray-900: #0F172A;
+            --white: #fff;
+            --black: #0F172A;
+            --g50: #F8FAFC; --g100:#F1F5F9; --g200:#E2E8F0; --g300:#CBD5E1; --g400:#94A3B8; --g500:#64748B; --g600:#475569; --g700:#334155; --g800:#1E293B; --g900:#0F172A;
 
             /* Gradients */
             --gradient-primary: linear-gradient(135deg, #0052FF 0%, #3B82F6 100%);
             --gradient-accent: linear-gradient(135deg, #FF4B00 0%, #FF6B35 100%);
-            --gradient-dark: linear-gradient(135deg, #1A1D29 0%, #2D3748 100%);
-            --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%);
+            --gradient-dark: linear-gradient(135deg, #0F172A 0%, #1F2937 100%);
+            --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.06) 100%);
 
             /* Shadows */
-            --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            --shadow-colored: 0 10px 25px -5px rgba(0, 82, 255, 0.2);
+            --shadow-xs: 0 1px 2px rgba(0,0,0,.05);
+            --shadow-md: 0 4px 20px rgba(16,24,40,.08);
+            --shadow-xl: 0 20px 50px rgba(2, 6, 23, .25);
+            --shadow-colored: 0 14px 40px rgba(0, 82, 255, .25);
 
-            /* Border radius */
-            --radius-xs: 4px;
-            --radius-sm: 6px;
-            --radius-md: 8px;
-            --radius-lg: 12px;
-            --radius-xl: 16px;
-            --radius-2xl: 20px;
-            --radius-3xl: 24px;
-            --radius-full: 9999px;
+            /* Radius */
+            --r-md: 12px; --r-lg: 16px; --r-xl: 24px; --r-2xl: 28px; --r-full: 999px;
 
             /* Spacing */
-            --space-1: 4px;
-            --space-2: 8px;
-            --space-3: 12px;
-            --space-4: 16px;
-            --space-5: 20px;
-            --space-6: 24px;
-            --space-8: 32px;
-            --space-10: 40px;
-            --space-12: 48px;
-            --space-16: 64px;
-            --space-20: 80px;
-            --space-24: 96px;
+            --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-10: 40px; --s-12: 48px; --s-16: 64px; --s-20: 80px; --s-24: 96px;
 
             /* Transitions */
-            --transition-fast: 0.15s ease-out;
-            --transition-base: 0.25s ease-out;
-            --transition-slow: 0.4s ease-out;
+            --t-fast: .15s ease-out; --t-base:.25s ease-out; --t-slow:.45s ease;
 
             /* Blur */
-            --blur-sm: blur(4px);
-            --blur-md: blur(8px);
-            --blur-lg: blur(16px);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--gray-800);
-            line-height: 1.6;
-            background-color: var(--gray-50);
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 1440px;
-            margin: 0 auto;
-            padding: 0 var(--space-6);
-        }
-
-        /* ---------- GLASS MORPHISM COMPONENTS ---------- */
-        .glass {
-            backdrop-filter: var(--blur-md);
-            -webkit-backdrop-filter: var(--blur-md);
-            background: var(--gradient-glass);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        /* ---------- MODERN BUTTONS ---------- */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: var(--space-2);
-            padding: var(--space-3) var(--space-6);
-            font-family: 'Inter', sans-serif;
-            font-weight: 600;
-            font-size: 14px;
-            line-height: 1;
-            text-decoration: none;
-            border: none;
-            border-radius: var(--radius-lg);
-            cursor: pointer;
-            transition: all var(--transition-base);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-primary {
-            background: var(--gradient-primary);
-            color: var(--white);
-            box-shadow: var(--shadow-colored);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-xl), var(--shadow-colored);
-        }
-
-        .btn-accent {
-            background: var(--gradient-accent);
-            color: var(--white);
-            box-shadow: 0 10px 25px -5px rgba(255, 75, 0, 0.2);
-        }
-
-        .btn-accent:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-xl), 0 10px 25px -5px rgba(255, 75, 0, 0.3);
-        }
-
-        .btn-outline {
-            background: var(--white);
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .btn-outline:hover {
-            background: var(--primary);
-            color: var(--white);
-            transform: translateY(-1px);
-        }
-
-        .btn-ghost {
-            background: transparent;
-            color: var(--gray-700);
-            border: 1px solid var(--gray-300);
-        }
-
-        .btn-ghost:hover {
-            background: var(--gray-100);
-            border-color: var(--gray-400);
-        }
-
-        .btn-lg {
-            padding: var(--space-4) var(--space-8);
-            font-size: 16px;
-            border-radius: var(--radius-xl);
-        }
-
-        .btn-sm {
-            padding: var(--space-2) var(--space-4);
-            font-size: 12px;
-            border-radius: var(--radius-md);
-        }
-
-        /* ---------- HEADER ---------- */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: var(--blur-lg);
-            -webkit-backdrop-filter: var(--blur-lg);
-            border-bottom: 1px solid var(--gray-200);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            transition: all var(--transition-base);
-        }
-
-        .header-top {
-            background: var(--gradient-dark);
-            color: var(--white);
-            font-size: 12px;
-            padding: var(--space-2) 0;
-        }
-
-        .header-top-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .header-info {
-            display: flex;
-            gap: var(--space-6);
-        }
-
-        .header-info span {
-            display: flex;
-            align-items: center;
-            gap: var(--space-1);
-            opacity: 0.9;
-        }
-
-        .header-main {
-            padding: var(--space-4) 0;
-        }
-
-        .header-content {
-            display: grid;
-            grid-template-columns: auto 1fr auto;
-            gap: var(--space-8);
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: var(--space-3);
-            text-decoration: none;
-        }
-
-        .logo-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--gradient-primary);
-            border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-weight: 800;
-            font-size: 18px;
-        }
-
-        .logo-text {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .logo-title {
-            font-weight: 800;
-            font-size: 24px;
-            color: var(--secondary);
-            line-height: 1;
-        }
-
-        .logo-subtitle {
-            font-size: 11px;
-            color: var(--gray-500);
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* Search */
-        .search-container {
-            position: relative;
-            max-width: 600px;
-            width: 100%;
-        }
-
-        .search-box {
-            width: 100%;
-            padding: var(--space-4) var(--space-6) var(--space-4) var(--space-16);
-            border: 2px solid var(--gray-300);
-            border-radius: var(--radius-full);
-            font-size: 16px;
-            transition: all var(--transition-base);
-            background: var(--white);
-        }
-
-        .search-box:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 4px rgba(0, 82, 255, 0.1);
-        }
-
-        .search-icon {
-            position: absolute;
-            left: var(--space-5);
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--gray-400);
-            font-size: 18px;
-        }
-
-        .search-btn {
-            position: absolute;
-            right: var(--space-1);
-            top: 50%;
-            transform: translateY(-50%);
-            padding: var(--space-3);
-            background: var(--gradient-primary);
-            border: none;
-            border-radius: var(--radius-full);
-            color: var(--white);
-            cursor: pointer;
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* Header Actions */
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: var(--space-4);
-        }
-
-        .action-item {
-            display: flex;
-            align-items: center;
-            gap: var(--space-2);
-            padding: var(--space-2) var(--space-3);
-            border-radius: var(--radius-lg);
-            text-decoration: none;
-            color: var(--gray-700);
-            transition: all var(--transition-base);
-            position: relative;
-        }
-
-        .action-item:hover {
-            background: var(--gray-100);
-            color: var(--primary);
-        }
-
-        .action-icon {
-            font-size: 20px;
-            position: relative;
-        }
-
-        .badge {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: var(--accent);
-            color: var(--white);
-            font-size: 10px;
-            font-weight: 600;
-            padding: 2px 6px;
-            border-radius: var(--radius-full);
-            min-width: 18px;
-            text-align: center;
-        }
-
-        /* Navigation */
-        .navigation {
-            background: var(--white);
-            border-bottom: 1px solid var(--gray-200);
-            padding: var(--space-3) 0;
-        }
-
-        .nav-content {
-            display: flex;
-            align-items: center;
-            gap: var(--space-8);
-        }
-
-        .catalog-btn {
-            display: flex;
-            align-items: center;
-            gap: var(--space-2);
-            padding: var(--space-3) var(--space-6);
-            background: var(--gradient-primary);
-            color: var(--white);
-            border-radius: var(--radius-lg);
-            text-decoration: none;
-            font-weight: 600;
-            transition: all var(--transition-base);
-        }
-
-        .catalog-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: var(--space-8);
-        }
-
-        .nav-link {
-            color: var(--gray-700);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all var(--transition-base);
-            position: relative;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width var(--transition-base);
-        }
-
-        .nav-link:hover {
-            color: var(--primary);
-        }
-
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* ---------- HERO SECTION ---------- */
-        .hero {
-            background: var(--gradient-dark);
-            min-height: 70vh;
-            display: flex;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image:
-                    radial-gradient(circle at 20% 50%, rgba(0, 82, 255, 0.2) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 20%, rgba(255, 75, 0, 0.15) 0%, transparent 50%),
-                    radial-gradient(circle at 40% 80%, rgba(0, 208, 132, 0.1) 0%, transparent 50%);
-            z-index: 1;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            color: var(--white);
-            max-width: 700px;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
-            padding: var(--space-2) var(--space-4);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--radius-full);
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: var(--space-6);
-            backdrop-filter: var(--blur-sm);
-        }
-
-        .hero-title {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.1;
-            margin-bottom: var(--space-6);
-            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-description {
-            font-size: 18px;
-            opacity: 0.9;
-            margin-bottom: var(--space-8);
-            line-height: 1.7;
-        }
-
-        .hero-actions {
-            display: flex;
-            gap: var(--space-4);
-            margin-bottom: var(--space-16);
-        }
-
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-8);
-            padding: var(--space-8);
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-2xl);
-            backdrop-filter: var(--blur-md);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: var(--space-2);
-            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            opacity: 0.8;
-        }
-
-        /* ---------- FLOATING ELEMENTS ---------- */
-        .floating-elements {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        .floating-card {
-            position: absolute;
-            padding: var(--space-4);
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: var(--blur-md);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--radius-xl);
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .floating-card:nth-child(1) {
-            top: 20%;
-            right: 10%;
-            animation-delay: 0s;
-        }
-
-        .floating-card:nth-child(2) {
-            top: 60%;
-            right: 20%;
-            animation-delay: 2s;
-        }
-
-        .floating-card:nth-child(3) {
-            top: 40%;
-            right: 5%;
-            animation-delay: 4s;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
-        }
-
-        /* ---------- CATEGORY CARDS ---------- */
-        .categories {
-            padding: var(--space-20) 0;
-            background: var(--white);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: var(--space-16);
-        }
-
-        .section-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: var(--space-2);
-            padding: var(--space-2) var(--space-4);
-            background: var(--primary-light);
-            color: var(--primary);
-            border-radius: var(--radius-full);
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: var(--space-4);
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            color: var(--secondary);
-            margin-bottom: var(--space-4);
-        }
-
-        .section-description {
-            font-size: 18px;
-            color: var(--gray-600);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--space-6);
-        }
-
-        .category-card {
-            background: var(--white);
-            border-radius: var(--radius-2xl);
-            overflow: hidden;
-            transition: all var(--transition-base);
-            position: relative;
-            border: 2px solid var(--gray-100);
-            group: hover;
-        }
-
-        .category-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: var(--gradient-primary);
-            opacity: 0;
-            transition: opacity var(--transition-base);
-            z-index: 1;
-        }
-
-        .category-card:hover::before {
-            opacity: 0.05;
-        }
-
-        .category-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-2xl);
-            border-color: var(--primary);
-        }
-
-        .category-image {
-            height: 200px;
-            position: relative;
-            overflow: hidden;
-            background: var(--gray-50);
-        }
-
-        .category-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform var(--transition-slow);
-        }
-
-        .category-card:hover .category-image img {
-            transform: scale(1.1);
-        }
-
-        .category-overlay {
-            position: absolute;
-            top: var(--space-4);
-            left: var(--space-4);
-            right: var(--space-4);
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-        }
-
-        .category-badge {
-            padding: var(--space-2) var(--space-3);
-            background: var(--white);
-            color: var(--primary);
-            border-radius: var(--radius-full);
-            font-size: 12px;
-            font-weight: 600;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .category-content {
-            padding: var(--space-6);
-            position: relative;
-            z-index: 2;
-        }
-
-        .category-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: var(--space-2);
-        }
-
-        .category-meta {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--space-4);
-        }
-
-        .category-count {
-            color: var(--gray-500);
-            font-size: 14px;
-        }
-
-        .category-rating {
-            display: flex;
-            align-items: center;
-            gap: var(--space-1);
-            color: var(--warning);
-            font-size: 14px;
-        }
-
-        .category-description {
-            color: var(--gray-600);
-            font-size: 14px;
-            margin-bottom: var(--space-6);
-            line-height: 1.6;
-        }
-
-        .category-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .category-price {
-            font-weight: 700;
-            color: var(--secondary);
-        }
-
-        .category-price-from {
-            font-size: 12px;
-            color: var(--gray-500);
-        }
-
-        .category-price-amount {
-            font-size: 18px;
-        }
-
-        /* ---------- PRODUCTS SHOWCASE ---------- */
-        .products {
-            padding: var(--space-20) 0;
-            background: var(--gray-50);
-        }
-
-        .products-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: var(--space-12);
-        }
-
-        .filter-tabs {
-            display: flex;
-            gap: var(--space-2);
-            background: var(--white);
-            padding: var(--space-1);
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .filter-tab {
-            padding: var(--space-3) var(--space-6);
-            border-radius: var(--radius-lg);
-            border: none;
-            background: transparent;
-            color: var(--gray-600);
-            font-weight: 500;
-            cursor: pointer;
-            transition: all var(--transition-base);
-        }
-
-        .filter-tab.active {
-            background: var(--gradient-primary);
-            color: var(--white);
-            box-shadow: var(--shadow-sm);
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: var(--space-6);
-        }
-
-        .product-card {
-            background: var(--white);
-            border-radius: var(--radius-2xl);
-            overflow: hidden;
-            transition: all var(--transition-base);
-            border: 2px solid transparent;
-            position: relative;
-        }
-
-        .product-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--primary);
-        }
-
-        .product-badges {
-            position: absolute;
-            top: var(--space-4);
-            left: var(--space-4);
-            right: var(--space-4);
-            display: flex;
-            justify-content: space-between;
-            z-index: 3;
-        }
-
-        .product-badge {
-            padding: var(--space-1) var(--space-3);
-            border-radius: var(--radius-full);
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .badge-hit {
-            background: var(--gradient-accent);
-            color: var(--white);
-        }
-
-        .badge-new {
-            background: var(--success);
-            color: var(--white);
-        }
-
-        .badge-discount {
-            background: var(--error);
-            color: var(--white);
-        }
-
-        .product-favorite {
-            width: 36px;
-            height: 36px;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: var(--radius-full);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gray-400);
-            cursor: pointer;
-            transition: all var(--transition-base);
-            backdrop-filter: var(--blur-sm);
-        }
-
-        .product-favorite:hover {
-            color: var(--error);
-            background: var(--white);
-        }
-
-        .product-image {
-            height: 240px;
-            position: relative;
-            overflow: hidden;
-            background: var(--gray-50);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: var(--space-6);
-        }
-
-        .product-image img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            transition: transform var(--transition-slow);
-        }
-
-        .product-card:hover .product-image img {
-            transform: scale(1.05);
-        }
-
-        .product-actions {
-            position: absolute;
-            bottom: var(--space-4);
-            left: var(--space-4);
-            right: var(--space-4);
-            display: flex;
-            gap: var(--space-2);
-            opacity: 0;
-            transform: translateY(10px);
-            transition: all var(--transition-base);
-        }
-
-        .product-card:hover .product-actions {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .action-btn {
-            flex: 1;
-            padding: var(--space-2);
-            background: rgba(255, 255, 255, 0.95);
-            border: 1px solid var(--gray-200);
-            border-radius: var(--radius-lg);
-            color: var(--gray-700);
-            cursor: pointer;
-            transition: all var(--transition-base);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: var(--blur-sm);
-        }
-
-        .action-btn:hover {
-            background: var(--primary);
-            color: var(--white);
-            border-color: var(--primary);
-        }
-
-        .product-content {
-            padding: var(--space-6);
-        }
-
-        .product-title {
-            font-size: 16px;
-            font-weight: 600;
-            color: var(--secondary);
-            margin-bottom: var(--space-2);
-            line-height: 1.4;
-        }
-
-        .product-sku {
-            font-size: 12px;
-            color: var(--gray-400);
-            font-family: 'JetBrains Mono', monospace;
-            margin-bottom: var(--space-3);
-        }
-
-        .product-specs {
-            margin-bottom: var(--space-4);
-        }
-
-        .spec-row {
-            display: flex;
-            justify-content: space-between;
-            padding: var(--space-1) 0;
-            font-size: 13px;
-            border-bottom: 1px dashed var(--gray-200);
-        }
-
-        .spec-label {
-            color: var(--gray-500);
-        }
-
-        .spec-value {
-            font-weight: 500;
-            color: var(--gray-700);
-        }
-
-        .product-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: var(--space-4);
-            padding-top: var(--space-4);
-            border-top: 1px solid var(--gray-100);
-        }
-
-        .product-price {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .price-current {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--secondary);
-        }
-
-        .price-old {
-            font-size: 14px;
-            color: var(--gray-400);
-            text-decoration: line-through;
-        }
-
-        .product-cart-btn {
-            padding: var(--space-2) var(--space-4);
-            background: var(--gradient-primary);
-            color: var(--white);
-            border: none;
-            border-radius: var(--radius-lg);
-            font-weight: 600;
-            cursor: pointer;
-            transition: all var(--transition-base);
-        }
-
-        .product-cart-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* ---------- FEATURES SECTION ---------- */
-        .features {
-            padding: var(--space-20) 0;
-            background: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .features::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                    radial-gradient(circle at 10% 20%, rgba(0, 82, 255, 0.05) 0%, transparent 50%),
-                    radial-gradient(circle at 80% 80%, rgba(255, 75, 0, 0.05) 0%, transparent 50%);
-        }
-
-        .features-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--space-8);
-        }
-
-        .feature-card {
-            text-align: center;
-            padding: var(--space-8);
-            background: var(--white);
-            border-radius: var(--radius-2xl);
-            border: 2px solid var(--gray-100);
-            transition: all var(--transition-base);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .feature-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--gradient-primary);
-            opacity: 0.02;
-            transition: left 0.6s ease;
-        }
-
-        .feature-card:hover::before {
-            left: 0;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-2xl);
-            border-color: var(--primary);
-        }
-
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto var(--space-6);
-            background: var(--gradient-primary);
-            border-radius: var(--radius-2xl);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 32px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .feature-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--secondary);
-            margin-bottom: var(--space-3);
-        }
-
-        .feature-description {
-            color: var(--gray-600);
-            line-height: 1.6;
-        }
-
-        /* ---------- STATS SECTION ---------- */
-        .stats {
-            padding: var(--space-20) 0;
-            background: var(--gradient-dark);
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stats::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background:
-                    radial-gradient(circle at 30% 30%, rgba(0, 82, 255, 0.3) 0%, transparent 50%),
-                    radial-gradient(circle at 70% 70%, rgba(255, 75, 0, 0.2) 0%, transparent 50%);
-        }
-
-        .stats-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--space-8);
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: var(--space-6);
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: var(--blur-md);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: var(--radius-2xl);
-            transition: all var(--transition-base);
-        }
-
-        .stat-card:hover {
-            transform: translateY(-4px);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .stat-icon {
-            font-size: 36px;
-            margin-bottom: var(--space-4);
-            color: var(--accent);
-        }
-
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: var(--space-2);
-            background: linear-gradient(135deg, #ffffff 0%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            opacity: 0.9;
-        }
-
-        /* ---------- CTA SECTION ---------- */
-        .cta {
-            padding: var(--space-20) 0;
-            background: var(--white);
-            text-align: center;
-        }
-
-        .cta-card {
-            background: var(--gradient-primary);
-            color: var(--white);
-            padding: var(--space-16) var(--space-8);
-            border-radius: var(--radius-3xl);
-            position: relative;
-            overflow: hidden;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .cta-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background:
-                    radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: rotate 20s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .cta-title {
-            font-size: clamp(1.8rem, 4vw, 2.5rem);
-            font-weight: 800;
-            margin-bottom: var(--space-6);
-        }
-
-        .cta-description {
-            font-size: 18px;
-            opacity: 0.9;
-            margin-bottom: var(--space-8);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-actions {
-            display: flex;
-            justify-content: center;
-            gap: var(--space-4);
-        }
-
-        .cta-btn {
-            background: var(--white);
-            color: var(--primary);
-            padding: var(--space-4) var(--space-8);
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        .cta-btn-outline {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .cta-btn-outline:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--white);
-        }
-
-        /* ---------- FOOTER ---------- */
-        footer {
-            background: var(--secondary);
-            color: var(--white);
-            padding: var(--space-20) 0 var(--space-8);
-        }
-
-        .footer-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-            gap: var(--space-16);
-            margin-bottom: var(--space-16);
-        }
-
-        .footer-brand {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: var(--space-3);
-            margin-bottom: var(--space-6);
-        }
-
-        .footer-description {
-            color: var(--gray-400);
-            line-height: 1.6;
-            margin-bottom: var(--space-6);
-        }
-
-        .footer-social {
-            display: flex;
-            gap: var(--space-3);
-        }
-
-        .social-btn {
-            width: 44px;
-            height: 44px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gray-400);
-            text-decoration: none;
-            transition: all var(--transition-base);
-        }
-
-        .social-btn:hover {
-            background: var(--primary);
-            color: var(--white);
-            transform: translateY(-2px);
-        }
-
-        .footer-links {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: var(--space-8);
-        }
-
-        .footer-column h3 {
-            font-size: 16px;
-            font-weight: 700;
-            margin-bottom: var(--space-6);
-            color: var(--white);
-        }
-
-        .footer-list {
-            list-style: none;
-        }
-
-        .footer-list li {
-            margin-bottom: var(--space-3);
-        }
-
-        .footer-list a {
-            color: var(--gray-400);
-            text-decoration: none;
-            transition: color var(--transition-base);
-        }
-
-        .footer-list a:hover {
-            color: var(--white);
-        }
-
-        .footer-contact {
-            display: flex;
-            flex-direction: column;
-            gap: var(--space-4);
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: var(--space-3);
-        }
-
-        .contact-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--primary);
-            border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-        }
-
-        .contact-text {
-            color: var(--gray-400);
-        }
-
-        .footer-bottom {
-            padding-top: var(--space-8);
-            border-top: 1px solid var(--gray-700);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: var(--gray-500);
-            font-size: 14px;
-        }
-
-        .footer-links-bottom {
-            display: flex;
-            gap: var(--space-6);
-        }
-
-        .footer-links-bottom a {
-            color: var(--gray-500);
-            text-decoration: none;
-            transition: color var(--transition-base);
-        }
-
-        .footer-links-bottom a:hover {
-            color: var(--white);
-        }
-
-        /* ---------- MOBILE RESPONSIVE ---------- */
-        @media (max-width: 768px) {
-            .header-content {
-                grid-template-columns: auto 1fr;
-                gap: var(--space-4);
-            }
-
-            .header-actions {
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                background: var(--white);
-                border-top: 1px solid var(--gray-200);
-                padding: var(--space-3);
-                justify-content: space-around;
-                z-index: 1000;
-            }
-
-            .hero {
-                min-height: 60vh;
-                padding: var(--space-16) 0;
-            }
-
-            .hero-stats {
-                grid-template-columns: 1fr;
-                gap: var(--space-4);
-            }
-
-            .hero-actions {
-                flex-direction: column;
-            }
-
-            .categories-grid,
-            .products-grid,
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-                gap: var(--space-8);
-            }
-
-            .footer-links {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: var(--space-4);
-                text-align: center;
-            }
-        }
-
-        /* ---------- ANIMATIONS ---------- */
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-slide-up {
-            animation: slideInUp 0.6s ease-out;
-        }
-
-        /* ---------- UTILITIES ---------- */
-        .text-gradient {
-            background: var(--gradient-primary);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .glass-effect {
-            backdrop-filter: var(--blur-md);
-            -webkit-backdrop-filter: var(--blur-md);
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            --blur: blur(10px);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, sans-serif; margin: 0; color: var(--g800); background: var(--g50); }
+
+        .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 var(--s-6); }
+
+        .btn { display: inline-flex; align-items: center; gap: var(--s-3); padding: 12px 18px; border-radius: var(--r-lg); border: 0; cursor: pointer; font-weight: 700; transition: transform var(--t-base), box-shadow var(--t-base), background var(--t-base); }
+        .btn i { font-size: 14px }
+        .btn-primary { background: var(--gradient-primary); color: #fff; box-shadow: var(--shadow-colored); }
+        .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-xl), var(--shadow-colored); }
+        .btn-ghost { background: #fff; color: var(--g700); border: 1px solid var(--g200); }
+        .btn-ghost:hover { background: var(--g100); }
+        .btn-accent { background: var(--gradient-accent); color:#fff }
+
+        /* Header */
+        .topbar { background: var(--gradient-dark); color:#fff; font-size: 12px; }
+        .topbar .wrap { display:flex; justify-content: space-between; align-items: center; gap: var(--s-6); padding: 8px 0; }
+        .topbar .info { display:flex; gap: var(--s-6); opacity:.95 }
+
+        header { position: sticky; top: 0; z-index: 40; backdrop-filter: saturate(140%) blur(8px); background: rgba(255,255,255,.85); border-bottom: 1px solid var(--g200); }
+        .head { padding: 14px 0; }
+        .head-grid { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: var(--s-6); }
+
+        .logo { display:flex; align-items: center; gap: 10px; text-decoration: none; }
+        .logo-mark { width: 44px; height: 44px; border-radius: 12px; display:grid; place-items:center; font-weight: 800; color:#fff; background: var(--gradient-primary); box-shadow: var(--shadow-colored); }
+        .logo-text { display:flex; flex-direction: column; line-height: 1; }
+        .logo-title { font-weight: 900; letter-spacing: .2px; color: var(--secondary) }
+        .logo-sub { font-size: 11px; color: var(--g500); text-transform: uppercase; letter-spacing:.4px }
+
+        .search { position: relative; max-width: 640px; }
+        .search input { width: 100%; border: 2px solid var(--g200); border-radius: var(--r-full); padding: 14px 48px 14px 44px; background:#fff; transition: border var(--t-base), box-shadow var(--t-base); font-size: 15px; }
+        .search input:focus { outline: none; border-color: var(--primary); box-shadow: 0 0 0 6px var(--primary-25); }
+        .search .icon { position:absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--g400) }
+        .search .go { position:absolute; right: 6px; top: 50%; transform: translateY(-50%); width: 44px; height:44px; border-radius: 50%; border: 0; display:grid; place-items:center; color:#fff; background: var(--gradient-primary) }
+        .suggest { position:absolute; left: 0; right: 0; top: calc(100% + 8px); background:#fff; border: 1px solid var(--g200); border-radius: 14px; box-shadow: var(--shadow-md); display:none; overflow: hidden; }
+        .suggest-item { padding: 10px 12px; display:flex; align-items: center; gap: 10px; cursor: pointer; }
+        .suggest-item:hover { background: var(--g100) }
+
+        .h-actions { display:flex; align-items:center; gap: 12px; }
+        .ha { position: relative; display:flex; align-items: center; gap: 8px; text-decoration: none; color: var(--g700); padding: 8px 10px; border-radius: 12px; }
+        .ha:hover { background: var(--g100) }
+        .ha .badge { position:absolute; top: -4px; right: -4px; background: var(--accent); color:#fff; font-size: 10px; font-weight: 800; border-radius: 999px; min-width: 18px; padding: 2px 6px; text-align:center; }
+
+        /* Nav */
+        .nav { background:#fff; border-top: 1px solid var(--g200); border-bottom: 1px solid var(--g200); }
+        .nav .row { display:flex; align-items:center; gap: 16px; padding: 10px 0; }
+        .catalog-btn { display:flex; align-items:center; gap: 10px; font-weight: 800; color:#fff; text-decoration:none; background: var(--gradient-primary); padding: 10px 16px; border-radius: 14px; box-shadow: var(--shadow-colored); }
+        .nav-links { display:flex; gap: 22px; flex-wrap: wrap; }
+        .nav-links a { color: var(--g700); text-decoration:none; font-weight: 600; position:relative }
+        .nav-links a::after { content:''; position:absolute; left: 0; bottom: -8px; width: 0; height: 2px; background: var(--primary); transition: width var(--t-base); }
+        .nav-links a:hover::after { width: 100% }
+
+        /* Offcanvas Catalog */
+        .offcanvas { position: fixed; inset: 0; display: grid; grid-template-columns: 360px 1fr; pointer-events: none; z-index: 50; }
+        .offcanvas .shade { background: rgba(2,6,23,.45); opacity: 0; transition: opacity var(--t-base); }
+        .offcanvas .panel { background:#fff; border-right: 1px solid var(--g200); transform: translateX(-100%); transition: transform var(--t-base); overflow:auto }
+        .offcanvas.show { pointer-events: auto; }
+        .offcanvas.show .shade { opacity: 1 }
+        .offcanvas.show .panel { transform: translateX(0) }
+        .cat-head { display:flex; justify-content: space-between; align-items:center; padding: 16px; border-bottom: 1px solid var(--g200) }
+        .cat-grid { display:grid; grid-template-columns: 1fr; gap: 10px; padding: 14px }
+        .cat-item { display:flex; align-items:center; gap: 12px; padding: 12px; border: 1px solid var(--g200); border-radius: 12px; cursor:pointer; background:#fff; transition: box-shadow var(--t-base), transform var(--t-base) }
+        .cat-item:hover { box-shadow: var(--shadow-md); transform: translateY(-2px) }
+
+        /* Hero */
+        .hero { position: relative; background: var(--gradient-dark); color:#fff; overflow: hidden; }
+        .hero .wrap { padding: 80px 0; display:grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; }
+        .hero h1 { font-size: clamp(34px, 5vw, 60px); line-height: 1.05; margin: 0 0 14px; font-weight: 900; letter-spacing: .2px; background: linear-gradient(135deg, #fff 0%, #cbd5e1 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero p { font-size: 18px; opacity:.9; margin: 0 0 22px }
+        .hero .stats { display:grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 26px }
+        .stat { background: rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.2); border-radius: 16px; padding: 16px; text-align: center; backdrop-filter: blur(6px) }
+        .stat .n { font-weight: 900; font-size: 32px; margin-bottom: 6px; background: linear-gradient(135deg, #fff 0%, #93a3b8 100%); -webkit-background-clip:text; -webkit-text-fill-color: transparent; }
+
+        .floating { position:absolute; inset: 0; pointer-events: none; }
+        .float-card { position:absolute; padding: 10px 14px; border-radius: 14px; background: var(--gradient-glass); border: 1px solid rgba(255,255,255,.25); backdrop-filter: var(--blur); color:#fff; animation: float 6s ease-in-out infinite; }
+        .float-card i { margin-right: 8px }
+        .float-1 { top: 22%; right: 10% }
+        .float-2 { bottom: 18%; right: 18%; animation-delay: 1.5s }
+        .float-3 { top: 38%; right: 3%; animation-delay: 3s }
+        @keyframes float { 0%,100%{ transform: translateY(0)} 50%{ transform: translateY(-14px)} }
+
+        /* Sections */
+        .section { padding: 80px 0 }
+        .section .title { text-align: center; margin-bottom: 28px }
+        .section .title h2 { font-size: clamp(26px, 3.6vw, 42px); margin: 8px 0 6px; font-weight: 900; color: var(--secondary) }
+        .section .title p { color: var(--g600) }
+
+        /* Category cards */
+        .cat-grid-cards { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px }
+        .card { background:#fff; border-radius: 20px; border: 2px solid var(--g100); overflow:hidden; transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base); position: relative }
+        .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); border-color: var(--primary) }
+        .card .img { height: 180px; background: var(--g100); display:grid; place-items:center; overflow:hidden }
+        .card .img img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); transition: transform var(--t-slow) }
+        .card:hover .img img { transform: scale(1.08) }
+        .card .body { padding: 16px }
+        .card .meta { display:flex; justify-content: space-between; align-items:center; font-size: 13px; color: var(--g500); margin-bottom: 8px }
+        .card .rating { color: var(--warning); font-weight: 700; }
+        .card .foot { display:flex; justify-content: space-between; align-items:center; margin-top: 10px }
+
+        /* Product grid */
+        .products { background: var(--g50); }
+        .products .bar { display:flex; justify-content: space-between; align-items:center; gap: 16px; margin-bottom: 18px }
+        .tabs { display:flex; gap: 8px; background:#fff; padding: 6px; border-radius: 14px; border: 1px solid var(--g200) }
+        .tab { border:0; background: transparent; padding: 10px 14px; border-radius: 12px; cursor:pointer; font-weight: 700; color: var(--g600) }
+        .tab.active { background: var(--gradient-primary); color:#fff }
+
+        .grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px }
+        .p { position: relative; background:#fff; border: 2px solid transparent; border-radius: 20px; overflow:hidden; transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base) }
+        .p:hover { transform: translateY(-4px); box-shadow: var(--shadow-xl); border-color: var(--primary) }
+        .p .badges { position:absolute; left: 12px; top: 12px; display:flex; gap: 6px; z-index: 2 }
+        .b { font-size: 10px; font-weight: 900; letter-spacing:.3px; padding: 6px 8px; border-radius: 999px; color:#fff; text-transform: uppercase }
+        .b.hit { background: var(--gradient-accent) }
+        .b.new { background: var(--success) }
+        .b.sale { background: var(--error) }
+        .fav { position:absolute; right: 12px; top: 12px; width: 36px; height:36px; display:grid; place-items:center; border-radius: 50%; background: rgba(255,255,255,.9); color: var(--g400); cursor:pointer }
+        .fav.active, .fav:hover { color: var(--error); background:#fff }
+        .p .img { height: 220px; display:grid; place-items:center; background: var(--g100); }
+        .p .img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+        .p .body { padding: 14px 14px 16px }
+        .sku { font-family: 'JetBrains Mono', monospace; color: var(--g400); font-size: 12px }
+        .spec { display:flex; justify-content: space-between; font-size: 13px; border-bottom: 1px dashed var(--g200); padding: 4px 0 }
+        .p .foot { display:flex; justify-content: space-between; align-items:center; gap: 10px; margin-top: 10px; padding-top: 12px; border-top: 1px solid var(--g100) }
+        .price { display:flex; flex-direction: column }
+        .price .now { font-weight: 900 }
+        .price .was { text-decoration: line-through; color: var(--g400); font-size: 13px }
+        .quick { position:absolute; left: 12px; right: 12px; bottom: 12px; display:flex; gap: 8px; opacity: 0; transform: translateY(10px); transition: var(--t-base) }
+        .p:hover .quick { opacity: 1; transform: translateY(0) }
+        .quick .a { flex: 1; padding: 10px; border-radius: 12px; background: rgba(255,255,255,.95); border: 1px solid var(--g200); display:grid; place-items:center; cursor:pointer }
+        .quick .a:hover { background: var(--primary); color:#fff; border-color: var(--primary) }
+
+
+        /* Modal (Quick view) */
+        .modal { position: fixed; inset: 0; display:grid; grid-template-columns: 1fr min(920px, 96vw) 1fr; pointer-events: none; z-index: 70 }
+        .modal .shade { grid-column: 1 / -1; background: rgba(2,6,23,.55); opacity: 0; transition: opacity var(--t-base) }
+        .modal .dialog { grid-column: 2; transform: translateY(20px); opacity: 0; transition: transform var(--t-base), opacity var(--t-base); background:#fff; border-radius: 20px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr }
+        .modal.show { pointer-events: auto }
+        .modal.show .shade { opacity: 1 }
+        .modal.show .dialog { transform: translateY(0); opacity: 1 }
+
+        .toast { position: fixed; right: 16px; bottom: 16px; display:flex; flex-direction: column; gap: 10px; z-index: 80 }
+        .toast .t { background:#fff; border:1px solid var(--g200); border-left: 4px solid var(--success); padding: 12px 14px; border-radius: 12px; box-shadow: var(--shadow-md) }
+
+        /* Footer */
+        footer { background: var(--secondary); color:#cbd5e1; padding: 60px 0 30px }
+
+        /* Mobile */
+        .mobilebar { display:none }
+        @media (max-width: 860px) {
+            .head-grid { grid-template-columns: auto 1fr auto }
+            .hero .wrap { grid-template-columns: 1fr; padding: 56px 0 }
+            .hero .stats { grid-template-columns: 1fr }
+            .mobilebar { position: fixed; left: 0; right: 0; bottom: 0; background:#fff; border-top: 1px solid var(--g200); display:flex; justify-content: space-around; padding: 8px; z-index: 55 }
+            .offcanvas { grid-template-columns: min(92vw, 380px) 1fr }
         }
     </style>
 </head>
 <body>
-<!-- Header Top -->
-<div class="header-top">
+<!-- Topbar -->
+<div class="topbar">
     <div class="container">
-        <div class="header-top-content">
-            <div class="header-info">
-                <span><i class="fas fa-truck"></i> Доставка по России и СНГ</span>
-                <span><i class="fas fa-shield-alt"></i> Гарантия качества</span>
-                <span><i class="fas fa-headset"></i> Техподдержка 24/7</span>
+        <div class="wrap">
+            <div class="info">
+                <span><i class="fa-solid fa-truck"></i> Доставка по РФ и СНГ</span>
+                <span><i class="fa-solid fa-shield"></i> Гарантия качества</span>
+                <span><i class="fa-solid fa-headset"></i> Техподдержка 24/7</span>
             </div>
-            <div class="header-info">
-                <span><i class="fas fa-map-marker-alt"></i> Санкт-Петербург</span>
-                <span><i class="fas fa-phone"></i> +7 (495) 123-45-67</span>
+            <div class="info">
+                <span><i class="fa-solid fa-location-dot"></i> Санкт-Петербург</span>
+                <span><i class="fa-solid fa-phone"></i> +7 (495) 123-45-67</span>
             </div>
         </div>
     </div>
 </div>
 
-<!-- Header Main -->
+<!-- Header -->
 <header>
-    <div class="header-main">
+    <div class="head">
         <div class="container">
-            <div class="header-content">
-                <a href="#" class="logo">
-                    <div class="logo-icon">W</div>
+            <div class="head-grid">
+                <a class="logo" href="#">
+                    <div class="logo-mark">W</div>
                     <div class="logo-text">
-                        <div class="logo-title">WEYER</div>
-                        <div class="logo-subtitle">Industrial Systems</div>
+                        <span class="logo-title">WEYER</span>
+                        <span class="logo-sub">Industrial Systems</span>
                     </div>
                 </a>
 
-                <div class="search-container">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" class="search-box" placeholder="Поиск по 15 000+ товаров...">
-                    <button class="search-btn">
-                        <i class="fas fa-search"></i>
-                    </button>
+                <div class="search" id="searchBox">
+                    <i class="fa-solid fa-magnifying-glass icon"></i>
+                    <input id="q" type="text" placeholder="Поиск по 15 000+ товарам…" autocomplete="off" />
+                    <button class="go" aria-label="Найти"><i class="fa-solid fa-arrow-right"></i></button>
+                    <div class="suggest" id="suggest"></div>
                 </div>
 
-                <div class="header-actions">
-                    <a href="#" class="action-item">
-                        <div class="action-icon">
-                            <i class="fas fa-balance-scale"></i>
-                        </div>
-                        <span>Сравнить</span>
-                    </a>
-                    <a href="#" class="action-item">
-                        <div class="action-icon">
-                            <i class="fas fa-heart"></i>
-                            <span class="badge">3</span>
-                        </div>
-                        <span>Избранное</span>
-                    </a>
-                    <a href="#" class="action-item">
-                        <div class="action-icon">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="badge">7</span>
-                        </div>
-                        <span>Корзина</span>
-                    </a>
-                    <a href="#" class="action-item">
-                        <div class="action-icon">
-                            <i class="fas fa-user-circle"></i>
-                        </div>
-                        <span>Профиль</span>
-                    </a>
+                <div class="h-actions">
+                    <a class="ha" href="#" id="btnCompare"><i class="fa-solid fa-balance-scale"></i><span>Сравнить</span><span class="badge" id="badgeCompare" hidden>0</span></a>
+                    <a class="ha" href="#" id="btnFav"><i class="fa-solid fa-heart"></i><span>Избранное</span><span class="badge" id="badgeFav" hidden>0</span></a>
+                    <a class="ha" href="#"><i class="fa-solid fa-user"></i><span>Профиль</span></a>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Navigation -->
-    <div class="navigation">
+    <!-- Nav -->
+    <div class="nav">
         <div class="container">
-            <div class="nav-content">
-                <a href="#" class="catalog-btn">
-                    <i class="fas fa-bars"></i>
-                    Каталог товаров
-                </a>
-                <div class="nav-links">
-                    <a href="#" class="nav-link">Металлорукава</a>
-                    <a href="#" class="nav-link">Кабельные вводы</a>
-                    <a href="#" class="nav-link">Соединители</a>
-                    <a href="#" class="nav-link">Защитные системы</a>
-                    <a href="#" class="nav-link">Новинки</a>
-                    <a href="#" class="nav-link">Акции</a>
-                    <a href="#" class="nav-link">О компании</a>
-                </div>
+            <div class="row">
+                <a href="#" class="catalog-btn" id="openCatalog"><i class="fa-solid fa-bars"></i> Каталог товаров</a>
+                <nav class="nav-links">
+                    <a href="#">Металлорукава</a>
+                    <a href="#">Кабельные вводы</a>
+                    <a href="#">Соединители</a>
+                    <a href="#">Защитные системы</a>
+                    <a href="#">Новинки</a>
+                    <a href="#">Акции</a>
+                    <a href="#">О компании</a>
+                </nav>
             </div>
         </div>
     </div>
 </header>
 
-<!-- Hero Section -->
+<!-- Catalog Offcanvas -->
+<div class="offcanvas" id="catalog">
+    <div class="panel">
+        <div class="cat-head">
+            <strong>Каталог</strong>
+            <button class="btn btn-ghost" id="closeCatalog"><i class="fa-solid fa-xmark"></i> Закрыть</button>
+        </div>
+        <div class="cat-grid">
+            <div class="cat-item" data-cat="metall">
+                <i class="fa-solid fa-link"></i>
+                <div>
+                    <div><strong>Металлорукава</strong></div>
+                    <small>Гофра, оплётка, арматура</small>
+                </div>
+            </div>
+            <div class="cat-item" data-cat="glands">
+                <i class="fa-solid fa-plug"></i>
+                <div>
+                    <div><strong>Кабельные вводы</strong></div>
+                    <small>Ex/EMC, IP68, нержавеющая сталь</small>
+                </div>
+            </div>
+            <div class="cat-item" data-cat="conn">
+                <i class="fa-solid fa-circle-nodes"></i>
+                <div>
+                    <div><strong>Соединители</strong></div>
+                    <small>Быстросъёмные, промышленные</small>
+                </div>
+            </div>
+            <div class="cat-item" data-cat="protect">
+                <i class="fa-solid fa-shield"></i>
+                <div>
+                    <div><strong>Защитные системы</strong></div>
+                    <small>Каналы, короба, оболочки</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="shade" id="catalogShade"></div>
+</div>
+
+<!-- Hero -->
 <section class="hero">
-    <div class="floating-elements">
-        <div class="floating-card glass">
-            <i class="fas fa-certificate" style="font-size: 24px; color: var(--accent);"></i>
-            <div style="margin-top: 8px; font-size: 12px;">ATEX Сертификаты</div>
-        </div>
-        <div class="floating-card glass">
-            <i class="fas fa-shipping-fast" style="font-size: 24px; color: var(--success);"></i>
-            <div style="margin-top: 8px; font-size: 12px;">Быстрая доставка</div>
-        </div>
-        <div class="floating-card glass">
-            <i class="fas fa-shield-alt" style="font-size: 24px; color: var(--primary);"></i>
-            <div style="margin-top: 8px; font-size: 12px;">Гарантия качества</div>
+    <div class="container">
+        <div class="wrap">
+            <div>
+                <div class="btn-ghost" style="display:inline-flex; align-items:center; gap:8px; padding:8px 12px; border-radius:999px; border:1px solid rgb(0,52,83); color:#209161; opacity:.9"><i class="fa-solid fa-star"></i> Работаем с 2003 года</div>
+                <h1>Промышленные решения нового поколения</h1>
+                <p>15 000+ позиций: кабельные системы, металлорукава и защитное оборудование от ведущих мировых производителей.</p>
+                <div style="display:flex; gap:12px; margin-top: 16px">
+                    <a class="btn btn-accent" href="#popular"><i class="fa-solid fa-rocket"></i> Открыть каталог</a>
+                    <a class="btn btn-ghost" href="#calc"><i class="fa-solid fa-calculator"></i> Рассчитать проект</a>
+                </div>
+                <div class="stats">
+                    <div class="stat"><div class="n">15K+</div><div>товаров в наличии</div></div>
+                    <div class="stat"><div class="n">500+</div><div>крупных клиентов</div></div>
+                    <div class="stat"><div class="n">24/7</div><div>техподдержка</div></div>
+                </div>
+            </div>
         </div>
     </div>
+    <div class="floating">
+        <div class="float-card float-1"><i class="fa-solid fa-certificate"></i> ATEX сертификаты</div>
+        <div class="float-card float-2"><i class="fa-solid fa-shipping-fast"></i> Быстрая доставка</div>
+        <div class="float-card float-3"><i class="fa-solid fa-shield"></i> Гарантия качества</div>
+    </div>
+</section>
 
+<!-- Categories -->
+<section class="section">
     <div class="container">
-        <div class="hero-content animate-slide-up">
-            <div class="hero-badge">
-                <i class="fas fa-star"></i>
-                Работаем с 2003 года
+        <div class="title">
+            <div class="btn-ghost" style="border-radius:999px; padding:8px 12px; border:1px solid var(--g200); display:inline-flex; align-items:center; gap:8px"><i class="fa-solid fa-layer-group"></i> Популярные категории</div>
+            <h2>Выберите нужную <span style="background:var(--gradient-primary); -webkit-background-clip:text; -webkit-text-fill-color:transparent">категорию</span></h2>
+            <p>Широкий ассортимент промышленного оборудования для любых задач.</p>
+        </div>
+        <div class="cat-grid-cards">
+            <article class="card">
+                <div class="img"><img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?q=80&w=800&auto=format&fit=crop" alt="Металлорукава"/></div>
+                <div class="body">
+                    <div class="meta"><span>1 286 товаров</span><span class="rating"><i class="fa-solid fa-star"></i> 4.8</span></div>
+                    <h3>Металлорукава</h3>
+                    <p style="color:var(--g600); margin: 6px 0 10px">Гибкие рукава для защиты кабелей в тяжёлых условиях.</p>
+                    <div class="foot"><div><small style="color:var(--g500)">от</small> <strong>850 ₽</strong></div><a class="btn btn-primary" href="#">Перейти <i class="fa-solid fa-arrow-right"></i></a></div>
+                </div>
+            </article>
+            <article class="card">
+                <div class="img"><img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=800&auto=format&fit=crop" alt="Кабельные вводы"/></div>
+                <div class="body">
+                    <div class="meta"><span>2 104 товара</span><span class="rating"><i class="fa-solid fa-star"></i> 4.9</span></div>
+                    <h3>Кабельные вводы</h3>
+                    <p style="color:var(--g600); margin: 6px 0 10px">Ex/EMC, герметичные решения для экстремальных условий.</p>
+                    <div class="foot"><div><small style="color:var(--g500)">от</small> <strong>1 250 ₽</strong></div><a class="btn btn-primary" href="#">Перейти <i class="fa-solid fa-arrow-right"></i></a></div>
+                </div>
+            </article>
+            <article class="card">
+                <div class="img"><img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=800&auto=format&fit=crop" alt="Соединители"/></div>
+                <div class="body">
+                    <div class="meta"><span>856 товаров</span><span class="rating"><i class="fa-solid fa-star"></i> 4.7</span></div>
+                    <h3>Соединители</h3>
+                    <p style="color:var(--g600); margin: 6px 0 10px">Высокопрочные соединители для надёжного монтажа.</p>
+                    <div class="foot"><div><small style="color:var(--g500)">от</small> <strong>320 ₽</strong></div><a class="btn btn-primary" href="#">Перейти <i class="fa-solid fa-arrow-right"></i></a></div>
+                </div>
+            </article>
+            <article class="card">
+                <div class="img"><img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=800&auto=format&fit=crop" alt="Защитные системы"/></div>
+                <div class="body">
+                    <div class="meta"><span>643 товара</span><span class="rating"><i class="fa-solid fa-star"></i> 4.6</span></div>
+                    <h3>Защитные системы</h3>
+                    <p style="color:var(--g600); margin: 6px 0 10px">Комплексные решения защиты электрооборудования.</p>
+                    <div class="foot"><div><small style="color:var(--g500)">от</small> <strong>2 850 ₽</strong></div><a class="btn btn-primary" href="#">Перейти <i class="fa-solid fa-arrow-right"></i></a></div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- Products -->
+<section class="section products" id="popular">
+    <div class="container">
+        <div class="bar">
+            <div>
+                <div class="btn-ghost" style="border-radius:999px; padding:8px 12px; border:1px solid var(--g200); display:inline-flex; align-items:center; gap:8px"><i class="fa-solid fa-fire"></i> Хиты продаж</div>
+                <h2 style="margin:8px 0 0">Популярные <span style="background:var(--gradient-primary); -webkit-background-clip:text; -webkit-text-fill-color:transparent">товары</span></h2>
             </div>
-
-            <h1 class="hero-title">
-                Промышленные решения нового поколения
-            </h1>
-
-            <p class="hero-description">
-                Откройте для себя более 15 000 позиций качественных кабельных систем, металлорукавов и защитного оборудования от ведущих производителей мира
-            </p>
-
-            <div class="hero-actions">
-                <a href="#" class="btn btn-accent btn-lg">
-                    <i class="fas fa-rocket"></i>
-                    Открыть каталог
-                </a>
-                <a href="#" class="btn btn-outline btn-lg">
-                    <i class="fas fa-calculator"></i>
-                    Рассчитать проект
-                </a>
+            <div class="tabs" role="tablist">
+                <button class="tab active" data-filter="all" role="tab">Все</button>
+                <button class="tab" data-filter="new" role="tab">Новинки</button>
+                <button class="tab" data-filter="sale" role="tab">Скидки</button>
+                <button class="tab" data-filter="hit" role="tab">Хиты</button>
             </div>
+        </div>
 
-            <div class="hero-stats">
-                <div class="stat-item">
-                    <div class="stat-number">15K+</div>
-                    <div class="stat-label">товаров в наличии</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">500+</div>
-                    <div class="stat-label">крупных клиентов</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">24/7</div>
-                    <div class="stat-label">техподдержка</div>
-                </div>
+        <div class="grid" id="gridProducts">
+            <!-- Product template items (can be generated dynamically) -->
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section" id="calc">
+    <div class="container">
+        <div style="text-align:center; background: var(--gradient-primary); color:#fff; padding: 40px; border-radius: 28px; position:relative; overflow:hidden">
+            <h3 style="font-size: clamp(22px, 3vw, 30px); margin: 0 0 6px">Нужна подборка под проект?</h3>
+            <p style="opacity:.92; margin: 0 0 18px">Получить консультацию специлаиста</p>
+            <div style="display:flex; gap:10px; justify-content:center; flex-wrap: wrap">
+                <button class="btn" style="background:#fff; color: var(--primary)"><i class="fa-solid fa-file-arrow-up"></i>Свяжитесь с нами</нами></button>
+                <button class="btn btn-ghost" style=color:#fff"><i class="fa-solid fa-message"></i> Консультация инженера</button>
             </div>
         </div>
     </div>
 </section>
 
-<!-- Categories Section -->
-<section class="categories">
-    <div class="container">
-        <div class="section-header">
-            <div class="section-badge">
-                <i class="fas fa-layer-group"></i>
-                Популярные категории
-            </div>
-            <h2 class="section-title">
-                Выберите нужную <span class="text-gradient">категорию</span>
-            </h2>
-            <p class="section-description">
-                Широкий ассортимент промышленного оборудования для любых задач
-            </p>
+<!-- Footer -->
+<footer>
+    <div class="container" style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px">
+        <div>
+            <div style="display:flex; align-items:center; gap: 12px; margin-bottom: 10px"><div class="logo-mark">W</div><div><strong>WEYER</strong><div style="font-size:12px; color:#9aa4b2">Industrial Systems</div></div></div>
+            <p style="color:#94a3b8">Маркетплейс промышленных кабельных систем. Поставки по РФ и СНГ, сопровождение проектов любого масштаба.</p>
         </div>
-
-        <div class="categories-grid">
-            <div class="category-card">
-                <div class="category-image">
-                    <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Металлорукава">
-                    <div class="category-overlay">
-                        <span class="category-badge">ТОП</span>
-                        <button class="product-favorite">
-                            <i class="far fa-heart"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="category-content">
-                    <h3 class="category-title">Металлорукава</h3>
-                    <div class="category-meta">
-                        <span class="category-count">1,286 товаров</span>
-                        <div class="category-rating">
-                            <i class="fas fa-star"></i>
-                            4.8
-                        </div>
-                    </div>
-                    <p class="category-description">
-                        Гибкие металлические рукава для защиты кабелей в промышленных условиях
-                    </p>
-                    <div class="category-footer">
-                        <div class="category-price">
-                            <div class="category-price-from">от</div>
-                            <div class="category-price-amount">850 ₽</div>
-                        </div>
-                        <a href="#" class="btn btn-primary btn-sm">
-                            Перейти
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="category-image">
-                    <img src="https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Кабельные вводы">
-                    <div class="category-overlay">
-                        <span class="category-badge" style="background: var(--success);">NEW</span>
-                        <button class="product-favorite">
-                            <i class="far fa-heart"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="category-content">
-                    <h3 class="category-title">Кабельные вводы</h3>
-                    <div class="category-meta">
-                        <span class="category-count">2,104 товара</span>
-                        <div class="category-rating">
-                            <i class="fas fa-star"></i>
-                            4.9
-                        </div>
-                    </div>
-                    <p class="category-description">
-                        Взрывозащищенные и герметичные кабельные вводы для экстремальных условий
-                    </p>
-                    <div class="category-footer">
-                        <div class="category-price">
-                            <div class="category-price-from">от</div>
-                            <div class="category-price-amount">1,250 ₽</div>
-                        </div>
-                        <a href="#" class="btn btn-primary btn-sm">
-                            Перейти
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="category-image">
-                    <img src="https://images.unsplash.com/photo-1557804506-669a67965ba0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Соединители">
-                    <div class="category-overlay">
-                        <span class="category-badge" style="background: var(--warning);">HIT</span>
-                        <button class="product-favorite">
-                            <i class="fas fa-heart" style="color: var(--error);"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="category-content">
-                    <h3 class="category-title">Соединители</h3>
-                    <div class="category-meta">
-                        <span class="category-count">856 товаров</span>
-                        <div class="category-rating">
-                            <i class="fas fa-star"></i>
-                            4.7
-                        </div>
-                    </div>
-                    <p class="category-description">
-                        Высокопрочные соединители для надежного монтажа кабельных систем
-                    </p>
-                    <div class="category-footer">
-                        <div class="category-price">
-                            <div class="category-price-from">от</div>
-                            <div class="category-price-amount">320 ₽</div>
-                        </div>
-                        <a href="#" class="btn btn-primary btn-sm">
-                            Перейти
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
-            </div>
-
-            <div class="category-card">
-                <div class="category-image">
-                    <img src="https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Защитные системы">
-                    <div class="category-overlay">
-                        <span class="category-badge" style="background: var(--error);">-25%</span>
-                        <button class="product-favorite">
-                            <i class="far fa-heart"></i>
-                        </button>
-                    </div>
-                </div>
-                <div class="category-content">
-                    <h3 class="category-title">Защитные системы</h3>
-                    <div class="category-meta">
-                        <span class="category-count">643 товара</span>
-                        <div class="category-rating">
-                            <i class="fas fa-star"></i>
-                            4.6
-                        </div>
-                    </div>
-                    <p class="category-description">
-                        Комплексные решения для защиты электрооборудования и кабелей
-                    </p>
-                    <div class="category-footer">
-                        <div class="category-price">
-                            <div class="category-price-from">от</div>
-                            <div class="category-price-amount">2,850 ₽</div>
-                        </div>
-                        <a href="#" class="btn btn-primary btn-sm">
-                            Перейти
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                    </div>
-                </div>
+        <div>
+            <h4>Клиентам</h4>
+            <ul style="list-style:none; padding:0; margin:10px 0 0; display:grid; gap:6px">
+                <li><a style="color:#cbd5e1; text-decoration:none" href="#">Оплата и доставка</a></li>
+                <li><a style="color:#cbd5e1; text-decoration:none" href="#">Возврат</a></li>
+                <li><a style="color:#cbd5e1; text-decoration:none" href="#">Поддержка 24/7</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>Контакты</h4>
+            <div style="display:grid; gap:6px; margin-top:10px">
+                <div><i class="fa-solid fa-location-dot"></i> Санкт‑Петербург</div>
+                <div><i class="fa-solid fa-phone"></i> +7 (495) 123‑45‑67</div>
+                <div><i class="fa-solid fa-envelope"></i> sales@weyer.example</div>
             </div>
         </div>
     </div>
-</section>
+    <div class="container" style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,.12); padding-top: 14px; display:flex; justify-content: space-between; gap: 16px; flex-wrap: wrap">
+        <small>© 2003–2025 WEYER</small>
+        <small><a href="#" style="color:#93a3b8; text-decoration:none">Политика конфиденциальности</a></small>
+    </div>
+</footer>
 
-<!-- Products Showcase -->
-<section class="products">
-    <div class="container">
-        <div class="products-header">
-            <div class="section-header" style="text-align: left; margin-bottom: 0;">
-                <div class="section-badge">
-                    <i class="fas fa-fire"></i>
-                    Хиты продаж
-                </div>
-                <h2 class="section-title">
-                    Популярные <span class="text-gradient">товары</span>
-                </h2>
+<!-- Mobile bottom bar -->
+<nav class="mobilebar">
+    <a class="ha" href="#" id="mbCatalog"><i class="fa-solid fa-bars"></i>Каталог</a>
+    <a class="ha" href="#"><i class="fa-solid fa-magnifying-glass"></i>Поиск</a>
+    <a class="ha" href="#"><i class="fa-solid fa-user"></i>Профиль</a>
+</nav>
+
+
+<!-- Quick View Modal -->
+<div class="modal" id="quickModal">
+    <div class="dialog">
+        <div style="background: var(--g100); display:grid; place-items:center; padding: 20px"><img id="qvImg" alt="" style="max-width:100%; max-height: 380px; object-fit: contain"></div>
+        <div style="padding: 18px 18px 22px">
+            <div id="qvBadges" style="display:flex; gap:6px; margin-bottom: 8px"></div>
+            <div class="sku" id="qvSku"></div>
+            <h3 id="qvTitle" style="margin: 6px 0 4px"></h3>
+            <div style="display:grid; gap: 6px; margin: 10px 0 14px">
+                <div class="spec"><span>Материал</span><strong id="qvMat"></strong></div>
+                <div class="spec"><span>Диаметр</span><strong id="qvDia"></strong></div>
             </div>
+            <div style="display:flex; justify-content: space-between; align-items:center; gap: 10px">
+                <div class="price"><span class="now" id="qvNow"></span><span class="was" id="qvWas"></span></div>
+                <div style="display:flex; gap: 8px">
+                    <button class="btn btn-ghost" id="qvCompare"><i class="fa-solid fa-balance-scale"></i> Сравнить</button>
+                </div>
+            </div>
+            <div style="margin-top: 16px"><button class="btn btn-ghost" id="qvClose"><i class="fa-solid fa-xmark"></i> Закрыть</button></div>
+        </div>
+    </div>
+    <div class="shade" id="modalShade"></div>
+</div>
 
-            <div></div>
+<!-- Toasts -->
+<div class="toast" id="toast"></div>
+
+<script>
+    // --- Demo dataset ---
+    const PRODUCTS = [
+        {id:1, sku:'MR-12-SS', title:'Металлорукав нерж. 12 мм', img:'https://images.unsplash.com/photo-1563865436916-7f27eca7e2b8?q=80&w=900&auto=format&fit=crop', price:850, old:980, tags:['hit','sale'], cat:'metall', spec:{Материал:'AISI 304', Диаметр:'12 мм'}},
+        {id:2, sku:'MR-20-SS', title:'Металлорукав нерж. 20 мм', img:'https://images.unsplash.com/photo-1554213455-7f5b38b8bdfc?q=80&w=900&auto=format&fit=crop', price:1190, old:null, tags:['hit'], cat:'metall', spec:{Материал:'AISI 304', Диаметр:'20 мм'}},
+        {id:3, sku:'CG-M20-EX', title:'Кабельный ввод Ex M20', img:'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?q=80&w=1000&auto=format&fit=crop', price:1790, old:1990, tags:['sale'], cat:'glands', spec:{Материал:'Никел. латунь', Диаметр:'M20'}},
+        {id:4, sku:'CG-M32-EMC', title:'Кабельный ввод EMC M32', img:'https://images.unsplash.com/photo-1602526212034-7ab1b3f6b9a7?q=80&w=1000&auto=format&fit=crop', price:2890, old:null, tags:['new'], cat:'glands', spec:{Материал:'Нерж. сталь', Диаметр:'M32'}},
+        {id:5, sku:'CON-QC-3P', title:'Соединитель быстросъёмный 3P', img:'https://images.unsplash.com/photo-1557804506-669a67965ba0?q=80&w=1000&auto=format&fit=crop', price:1290, old:1490, tags:['hit','sale'], cat:'conn', spec:{Материал:'Полиамид', Диаметр:'—'}},
+        {id:6, sku:'PRO-BOX-54', title:'Короб защитный IP54', img:'https://images.unsplash.com/photo-1591799264318-7e6ef8ddb7ea?q=80&w=1000&auto=format&fit=crop', price:2450, old:null, tags:['new'], cat:'protect', spec:{Материал:'ABS', Диаметр:'—'}},
+    ];
+
+    // --- State ---
+    const state = {
+        fav: new Set(JSON.parse(localStorage.getItem('fav')||'[]')),
+        compare: new Set(JSON.parse(localStorage.getItem('compare')||'[]')),
+        filter: 'all'
+    };
+
+    const $ = s => document.querySelector(s);
+    const $$ = s => document.querySelectorAll(s);
+
+    // --- Render products ---
+    const grid = $('#gridProducts');
+    function badge(label, cls){return `<span class="b ${cls}">${label}</span>`}
+    function fmt(n){return n.toLocaleString('ru-RU')+ ' ₽'}
+
+    function render(){
+        // products
+        const byFilter = p => state.filter==='all' || p.tags.includes(state.filter);
+        grid.innerHTML = PRODUCTS.filter(byFilter).map(p => `
+        <article class="p" data-id="${p.id}" data-cat="${p.cat}">
+          <div class="badges">
+            ${p.tags.includes('hit')?badge('HIT','hit'):''}
+            ${p.tags.includes('new')?badge('NEW','new'):''}
+            ${p.tags.includes('sale')?badge('-'+Math.round(100-100*p.price/(p.old||p.price))+'%','sale'):''}
+          </div>
+          <div class="fav ${state.fav.has(p.id)?'active':''}" data-act="fav" title="Добавить в избранное"><i class="fa-solid fa-heart"></i></div>
+          <div class="img"><img src="${p.img}" alt="${p.title}"/></div>
+          <div class="body">
+            <div class="sku">${p.sku}</div>
+            <h3 style="margin:6px 0">${p.title}</h3>
+            <div class="spec"><span>Материал</span><strong>${p.spec['Материал']}</strong></div>
+            <div class="spec"><span>Диаметр</span><strong>${p.spec['Диаметр']}</strong></div>
+            <div class="foot">
+              <div class="price"><span class="now">${fmt(p.price)}</span>${p.old?`<span class="was">${fmt(p.old)}</span>`:''}</div>
+            </div>
+          </div>
+          <div class="quick">
+            <div class="a" data-act="quick"><i class="fa-solid fa-eye"></i></div>
+            <div class="a" data-act="compare"><i class="fa-solid fa-balance-scale"></i></div>
+          </div>
+        </article>
+      `).join('');
+
+        // badges
+        const bf = $('#badgeFav'), bcmp = $('#badgeCompare');
+        bf.textContent = state.fav.size; bf.hidden = state.fav.size===0;
+        bcmp.textContent = state.compare.size; bcmp.hidden = state.compare.size===0;
+    }
+
+    // --- Tabs ---
+    $$('.tab').forEach(t => t.addEventListener('click', e => {
+        $$('.tab').forEach(n => n.classList.remove('active'));
+        t.classList.add('active');
+        state.filter = t.dataset.filter; render();
+    }));
+
+    // --- Grid actions ---
+    grid.addEventListener('click', e => {
+        const card = e.target.closest('.p');
+        if(!card) return;
+        const id = +card.dataset.id; const prod = PRODUCTS.find(p=>p.id===id);
+        const actEl = e.target.closest('[data-act]');
+        if(!actEl) return;
+        const act = actEl.dataset.act;
+        if(act==='fav') toggleFav(id);
+        if(act==='compare') toggleCompare(id);
+        if(act==='quick') openQuick(prod);
+    });
+
+
+    function toggleFav(id){ state.fav[state.fav.has(id)?'delete':'add'](id); localStorage.setItem('fav', JSON.stringify(Array.from(state.fav))); render(); }
+    function toggleCompare(id){ state.compare[state.compare.has(id)?'delete':'add'](id); localStorage.setItem('compare', JSON.stringify(Array.from(state.compare))); render(); }
+
+
+    // --- Quick view ---
+    const modal = $('#quickModal');
+    const mShade = $('#modalShade');
+    function openQuick(p){
+        $('#qvImg').src = p.img; $('#qvSku').textContent = p.sku; $('#qvTitle').textContent = p.title; $('#qvMat').textContent = p.spec['Материал']; $('#qvDia').textContent = p.spec['Диаметр']; $('#qvNow').textContent = fmt(p.price); $('#qvWas').textContent = p.old?fmt(p.old):'';
+        $('#qvBadges').innerHTML = `${p.tags.includes('hit')?badge('HIT','hit'):''}${p.tags.includes('new')?badge('NEW','new'):''}${p.tags.includes('sale')?badge('-'+Math.round(100-100*p.price/(p.old||p.price))+'%','sale'):''}`;
+        $('#qvCompare').onclick = ()=> toggleCompare(p.id);
+        modal.classList.add('show');
+    }
+    $('#qvClose').onclick = ()=> modal.classList.remove('show');
+    mShade.onclick = ()=> modal.classList.remove('show');
+
+    // --- Catalog Offcanvas ---
+    const off = $('#catalog'); const shade = $('#catalogShade');
+    $('#openCatalog').addEventListener('click', e=>{ e.preventDefault(); off.classList.add('show') });
+    $('#closeCatalog').addEventListener('click', ()=> off.classList.remove('show'));
+    shade.addEventListener('click', ()=> off.classList.remove('show'));
+    $('#mbCatalog').addEventListener('click', e=>{ e.preventDefault(); off.classList.add('show') });
+
+    // --- Search box (demo suggestions) ---
+    const SUGG = ['Металлорукав 12 мм','Кабельный ввод M20 нерж','Соединитель 3P','Короб IP54'];
+    const suggest = $('#suggest');
+    $('#q').addEventListener('input', e => {
+        const v = e.target.value.trim().toLowerCase();
+        const list = SUGG.filter(s => s.toLowerCase().includes(v)).slice(0,6);
+        suggest.innerHTML = list.map(t=>`<div class="suggest-item"><i class="fa-solid fa-magnifying-glass"></i>${t}</div>`).join('');
+        suggest.style.display = list.length? 'block':'none';
+    });
+    suggest.addEventListener('click', e=>{
+        if(e.target.closest('.suggest-item')){ $('#q').value = e.target.closest('.suggest-item').innerText; suggest.style.display='none'; }
+    });
+    document.addEventListener('click', e=>{ if(!$('#searchBox').contains(e.target)) suggest.style.display='none' });
+
+    // --- Toast ---
+    const toastBox = $('#toast');
+    function toast(html){
+        const el = document.createElement('div'); el.className='t'; el.innerHTML = `<i class="fa-solid fa-check"></i> ${html}`;
+        toastBox.appendChild(el);
+        setTimeout(()=>{ el.style.opacity=.0; el.style.transform='translateY(8px)'; setTimeout(()=> el.remove(), 300) }, 1800);
+    }
+
+    // Initial render
+    render();
+</script>
+</body>
+</html>
